@@ -1,0 +1,2 @@
+![build](https://travis-ci.org/dnotes/markdown-it-auto-parnum.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/dnotes/markdown-it-auto-parnum/badge.svg?branch=master)](https://coveralls.io/github/dnotes/markdown-it-auto-parnum?branch=master)

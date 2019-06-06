@@ -1,0 +1,6 @@
+These are test definitions. This is a title.
+.
+The [markdown](//daringfireball.net/markdown) above should match the html below.
+.
+<p>The <a href="//daringfireball.net/markdown">markdown</a> above should match the html below.</p>
+.
