@@ -86,11 +86,6 @@ class Counter {
   get elements() {
     return this._elements.filter(v => v)
   }
-
-  toString() {
-    return this.value
-  }
-
 }
 
 function autoParNum(state, options = {}) {
