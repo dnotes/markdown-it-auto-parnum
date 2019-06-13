@@ -121,7 +121,7 @@ function autoParNum(state, options = {}) {
     // We should check all tokens of types that can be numbered, as well as all headers
     if ((numberedElements + ',heading_open').indexOf(state.tokens[i].type) > -1) {
       tag = /^h\d$/.test(state.tokens[i].tag) ? state.tokens[i].tag : 'p'
-      if ((setNum = state.tokens[i].attrGet(sign))) {
+      if ((setNum = state.tokens[i].attrGet(sign)) && /\d/.test(setNum)) {
         setNum = setNum.replace(/[0-9]+/g, '0')
         if (scheme[tag] && scheme[tag] !== setNum) {
           throw new Error(`Inconsistent numbering for <${tag}>: ${scheme[tag]} <> ${setNum}`)
@@ -172,12 +172,13 @@ function autoParNum(state, options = {}) {
     if (numberedElements.indexOf(state.tokens[i].type) > -1) {
       switch (setNum) {
         case null:
-          num.increment()
+          if (numbersOn) num.increment()
           break
         case 'stop':
         case 'off':
           numbersOn = false
         case 'none':
+        case 'skip':
           continue
         case 'auto':
         case 'on':
@@ -186,7 +187,11 @@ function autoParNum(state, options = {}) {
           num.increment()
           break
         default:
-          num.value = setNum
+          if (/\d/.test(setNum)) {
+            num.value = setNum
+            numbersOn = true
+          }
+          else if (numbersOn) num.increment()
           break
       }
       if (numbersOn) {
