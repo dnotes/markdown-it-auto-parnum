@@ -13,6 +13,7 @@ const md = require('markdown-it')('commonmark')
 describe('Run test fixtures', function () {
   generate(path.join(__dirname, 'fixtures/multilevel.txt'), { header: true }, md)
   generate(path.join(__dirname, 'fixtures/control.txt'), { header: true }, md)
+  generate(path.join(__dirname, 'fixtures/containers.txt'), { header: true }, md)
 })
 
 // // TESTING A LARGE FILE

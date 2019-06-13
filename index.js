@@ -93,7 +93,7 @@ function autoParNum(state, options = {}) {
   // OPTIONS
 
   // numberedElements: A comma-separated string of elements to be numbered.
-  let numberedElements = options.numberedElements || 'paragraph_open,blockquote_open'
+  let numberedElements = options.numberedElements || 'paragraph_open'
 
   // sign: The sign used for paragraph numbering attributes.
   let sign = options.sign = options.sign || '¶'

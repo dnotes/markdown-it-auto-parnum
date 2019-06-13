@@ -1,0 +1,111 @@
+Bulleted and numbered lists
+.
+1.  List item.
+2.  List item.
+-   List item.
+-   List item.
+.
+<ol>
+<li><a ¶="1" id="¶1">1</a>List item.</li>
+<li><a ¶="2" id="¶2">2</a>List item.</li>
+</ol>
+<ul>
+<li><a ¶="3" id="¶3">3</a>List item.</li>
+<li><a ¶="4" id="¶4">4</a>List item.</li>
+</ul>
+.
+
+Paragraphs inside numbered lists
+.
+1.  List item paragraph.
+
+    List item paragraph.
+
+2.  List item paragraph.
+
+    List item paragraph.
+.
+<ol>
+<li>
+<p><a ¶="1" id="¶1">1</a>List item paragraph.</p>
+<p><a ¶="2" id="¶2">2</a>List item paragraph.</p>
+</li>
+<li>
+<p><a ¶="3" id="¶3">3</a>List item paragraph.</p>
+<p><a ¶="4" id="¶4">4</a>List item paragraph.</p>
+</li>
+</ol>
+.
+
+Paragraphs inside bulleted lists
+.
+-   List item paragraph.
+
+    List item paragraph.
+
+-   List item paragraph.
+
+    List item paragraph.
+.
+<ul>
+<li>
+<p><a ¶="1" id="¶1">1</a>List item paragraph.</p>
+<p><a ¶="2" id="¶2">2</a>List item paragraph.</p>
+</li>
+<li>
+<p><a ¶="3" id="¶3">3</a>List item paragraph.</p>
+<p><a ¶="4" id="¶4">4</a>List item paragraph.</p>
+</li>
+</ul>
+.
+
+Single-line block quotes
+.
+> Blockquote text.
+
+> Blockquote text.
+.
+<blockquote>
+<p><a ¶="1" id="¶1">1</a>Blockquote text.</p>
+</blockquote>
+<blockquote>
+<p><a ¶="2" id="¶2">2</a>Blockquote text.</p>
+</blockquote>
+.
+
+Paragraphs inside block quotes
+.
+> Paragraph text.
+>
+> Paragraph text.
+.
+<blockquote>
+<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
+<p><a ¶="2" id="¶2">2</a>Paragraph text.</p>
+</blockquote>
+.
+
+Multi-level lists
+.
+1.  List item text.
+    -   Level 2.1
+    -   Level 2.2
+2.  List item text.
+    1.  Level 2.1
+    2.  Level 2.2
+.
+<ol>
+<li><a ¶="1" id="¶1">1</a>List item text.
+<ul>
+<li><a ¶="2" id="¶2">2</a>Level 2.1</li>
+<li><a ¶="3" id="¶3">3</a>Level 2.2</li>
+</ul>
+</li>
+<li><a ¶="4" id="¶4">4</a>List item text.
+<ol>
+<li><a ¶="5" id="¶5">5</a>Level 2.1</li>
+<li><a ¶="6" id="¶6">6</a>Level 2.2</li>
+</ol>
+</li>
+</ol>
+.
