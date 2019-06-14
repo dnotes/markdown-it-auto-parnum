@@ -18,6 +18,7 @@ class Counter {
     token.content = this.value
     token.attrPush([this.options.sign, this.value])
     token.attrPush(['id', this.options.sign + this.value])
+    if (this.options.addLinks) token.attrPush(['href', `#${this.options.sign}${this.value}`])
     this.state.tokens.splice(i + 1, 0, token)
     this.state.tokens[i].block = false
   }
@@ -108,6 +109,9 @@ function autoParNum(state, options = {}) {
   // delimiter: The delimiter that will be used for multi-level numbering,
   // unless explicitly specified in the document with ¶= attributes.
   let delimiter = options.delimiter = options.delimiter || '.'
+
+  // addLinks: Whether to add href to paragraph number anchors
+  options.addLinks = typeof options.addLinks !== 'undefined' ? Boolean(options.addLinks) : true
 
   // Variables for parsing
   let num = new Counter(state, options)

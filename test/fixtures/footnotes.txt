@@ -4,7 +4,7 @@ Paragraph text.[^1]
 
 [^1]: Footnote text.
 .
-<p><a ¶="1" id="¶1">1</a>Paragraph text.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
 <hr class="footnotes-sep" />
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -22,7 +22,7 @@ Paragraph text.[^1]
 
     Footnote text paragraph 2.
 .
-<p><a ¶="1" id="¶1">1</a>Paragraph text.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
 <hr class="footnotes-sep" />
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -37,7 +37,7 @@ Inline footnotes
 .
 Paragraph text.^[Footnote text.]
 .
-<p><a ¶="1" id="¶1">1</a>Paragraph text.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
 <hr class="footnotes-sep" />
 <section class="footnotes">
 <ol class="footnotes-list">

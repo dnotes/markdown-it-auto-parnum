@@ -5,6 +5,7 @@ a[¶] {
   display: block;
   left: 0;
   margin-top: .3em;
+  text-decoration: none;
 }
 
 body {

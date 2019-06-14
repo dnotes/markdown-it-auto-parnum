@@ -6,12 +6,12 @@ Bulleted and numbered lists
 -   List item.
 .
 <ol>
-<li><a ¶="1" id="¶1">1</a>List item.</li>
-<li><a ¶="2" id="¶2">2</a>List item.</li>
+<li><a ¶="1" id="¶1" href="#¶1">1</a>List item.</li>
+<li><a ¶="2" id="¶2" href="#¶2">2</a>List item.</li>
 </ol>
 <ul>
-<li><a ¶="3" id="¶3">3</a>List item.</li>
-<li><a ¶="4" id="¶4">4</a>List item.</li>
+<li><a ¶="3" id="¶3" href="#¶3">3</a>List item.</li>
+<li><a ¶="4" id="¶4" href="#¶4">4</a>List item.</li>
 </ul>
 .
 
@@ -27,12 +27,12 @@ Paragraphs inside numbered lists
 .
 <ol>
 <li>
-<p><a ¶="1" id="¶1">1</a>List item paragraph.</p>
-<p><a ¶="2" id="¶2">2</a>List item paragraph.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>List item paragraph.</p>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>List item paragraph.</p>
 </li>
 <li>
-<p><a ¶="3" id="¶3">3</a>List item paragraph.</p>
-<p><a ¶="4" id="¶4">4</a>List item paragraph.</p>
+<p><a ¶="3" id="¶3" href="#¶3">3</a>List item paragraph.</p>
+<p><a ¶="4" id="¶4" href="#¶4">4</a>List item paragraph.</p>
 </li>
 </ol>
 .
@@ -49,12 +49,12 @@ Paragraphs inside bulleted lists
 .
 <ul>
 <li>
-<p><a ¶="1" id="¶1">1</a>List item paragraph.</p>
-<p><a ¶="2" id="¶2">2</a>List item paragraph.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>List item paragraph.</p>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>List item paragraph.</p>
 </li>
 <li>
-<p><a ¶="3" id="¶3">3</a>List item paragraph.</p>
-<p><a ¶="4" id="¶4">4</a>List item paragraph.</p>
+<p><a ¶="3" id="¶3" href="#¶3">3</a>List item paragraph.</p>
+<p><a ¶="4" id="¶4" href="#¶4">4</a>List item paragraph.</p>
 </li>
 </ul>
 .
@@ -66,10 +66,10 @@ Single-line block quotes
 > Blockquote text.
 .
 <blockquote>
-<p><a ¶="1" id="¶1">1</a>Blockquote text.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Blockquote text.</p>
 </blockquote>
 <blockquote>
-<p><a ¶="2" id="¶2">2</a>Blockquote text.</p>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>Blockquote text.</p>
 </blockquote>
 .
 
@@ -80,8 +80,8 @@ Paragraphs inside block quotes
 > Paragraph text.
 .
 <blockquote>
-<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
-<p><a ¶="2" id="¶2">2</a>Paragraph text.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
 </blockquote>
 .
 
@@ -95,16 +95,16 @@ Multi-level lists
     2.  Level 2.2
 .
 <ol>
-<li><a ¶="1" id="¶1">1</a>List item text.
+<li><a ¶="1" id="¶1" href="#¶1">1</a>List item text.
 <ul>
-<li><a ¶="2" id="¶2">2</a>Level 2.1</li>
-<li><a ¶="3" id="¶3">3</a>Level 2.2</li>
+<li><a ¶="2" id="¶2" href="#¶2">2</a>Level 2.1</li>
+<li><a ¶="3" id="¶3" href="#¶3">3</a>Level 2.2</li>
 </ul>
 </li>
-<li><a ¶="4" id="¶4">4</a>List item text.
+<li><a ¶="4" id="¶4" href="#¶4">4</a>List item text.
 <ol>
-<li><a ¶="5" id="¶5">5</a>Level 2.1</li>
-<li><a ¶="6" id="¶6">6</a>Level 2.2</li>
+<li><a ¶="5" id="¶5" href="#¶5">5</a>Level 2.1</li>
+<li><a ¶="6" id="¶6" href="#¶6">6</a>Level 2.2</li>
 </ol>
 </li>
 </ol>

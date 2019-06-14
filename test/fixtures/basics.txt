@@ -2,7 +2,7 @@ Paragraph numbers work
 .
 Paragraph text.
 .
-<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
 .
 
 Empty paragraphs in containers do not receive numbers
@@ -12,7 +12,7 @@ Empty paragraphs in containers do not receive numbers
 > {¶=¶}
 .
 <blockquote ¶="¶">
-<p><a ¶="1" id="¶1">1</a><strong>Paragraph text.</strong></p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a><strong>Paragraph text.</strong></p>
 <p></p>
 </blockquote>
 .

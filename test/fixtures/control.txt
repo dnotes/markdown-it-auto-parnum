@@ -10,11 +10,11 @@ Paragraph text. {¶=start}
 
 Paragraph text.
 .
-<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
 <p ¶="stop">Paragraph text.</p>
 <p>Paragraph text.</p>
-<p ¶="start"><a ¶="2" id="¶2">2</a>Paragraph text.</p>
-<p><a ¶="3" id="¶3">3</a>Paragraph text.</p>
+<p ¶="start"><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
+<p><a ¶="3" id="¶3" href="#¶3">3</a>Paragraph text.</p>
 .
 
 Control: "off" and "on"
@@ -29,11 +29,11 @@ Paragraph text. {¶=on}
 
 Paragraph text.
 .
-<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
 <p ¶="off">Paragraph text.</p>
 <p>Paragraph text.</p>
-<p ¶="on"><a ¶="2" id="¶2">2</a>Paragraph text.</p>
-<p><a ¶="3" id="¶3">3</a>Paragraph text.</p>
+<p ¶="on"><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
+<p><a ¶="3" id="¶3" href="#¶3">3</a>Paragraph text.</p>
 .
 
 Control: "auto"
@@ -48,11 +48,11 @@ Paragraph text. {¶=auto}
 
 Paragraph text.
 .
-<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
 <p ¶="stop">Paragraph text.</p>
 <p>Paragraph text.</p>
-<p ¶="auto"><a ¶="2" id="¶2">2</a>Paragraph text.</p>
-<p><a ¶="3" id="¶3">3</a>Paragraph text.</p>
+<p ¶="auto"><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
+<p><a ¶="3" id="¶3" href="#¶3">3</a>Paragraph text.</p>
 .
 
 Control: "none" and "skip"
@@ -67,11 +67,11 @@ Paragraph text. {¶=skip}
 
 Paragraph text.
 .
-<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
 <p ¶="none">Paragraph text.</p>
-<p><a ¶="2" id="¶2">2</a>Paragraph text.</p>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
 <p ¶="skip">Paragraph text.</p>
-<p><a ¶="3" id="¶3">3</a>Paragraph text.</p>
+<p><a ¶="3" id="¶3" href="#¶3">3</a>Paragraph text.</p>
 .
 
 Misspelled or unsupported controls
@@ -86,9 +86,9 @@ Paragraph text. {¶=random}
 
 Paragraph text.
 .
-<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
-<p ¶="non"><a ¶="2" id="¶2">2</a>Paragraph text.</p>
-<p><a ¶="3" id="¶3">3</a>Paragraph text.</p>
-<p ¶="random"><a ¶="4" id="¶4">4</a>Paragraph text.</p>
-<p><a ¶="5" id="¶5">5</a>Paragraph text.</p>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
+<p ¶="non"><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
+<p><a ¶="3" id="¶3" href="#¶3">3</a>Paragraph text.</p>
+<p ¶="random"><a ¶="4" id="¶4" href="#¶4">4</a>Paragraph text.</p>
+<p><a ¶="5" id="¶5" href="#¶5">5</a>Paragraph text.</p>
 .
