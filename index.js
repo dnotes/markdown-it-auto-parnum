@@ -181,7 +181,6 @@ function autoParNum(state, options = {}) {
     if (nesting === 0 && numberedElements.indexOf(token.type) > -1) {
       switch (setNum) {
         case null:
-          if (numbersOn) num.increment()
           break
         case 'stop':
         case 'off':
@@ -193,16 +192,17 @@ function autoParNum(state, options = {}) {
         case 'on':
         case 'start':
           numbersOn = true
-          num.increment()
           break
         default:
           if (/\d/.test(setNum)) {
             num.value = setNum
             numbersOn = true
+            // If the number has been specified, it must be added immediately to avoid incrementing
+            num.insertAfter(i)
+            continue
           }
-          else if (numbersOn) num.increment()
-          break
       }
+
       // Don't number if the numbering is off
       if (!numbersOn) continue
       // Don't number if the element is completely empty
@@ -210,7 +210,20 @@ function autoParNum(state, options = {}) {
           state.tokens[i + 1].type === 'inline' &&
           state.tokens[i + 1].children.length === 1 &&
           state.tokens[i + 1].children[0].type === 'text' &&
-          state.tokens[i + 1].children[0].content.trim() === '') continue
+          state.tokens[i + 1].children[0].content.trim() === ''
+      ) continue
+      // Don't number if paragraphs are hidden, as in tight lists
+      if (token.hidden &&
+          // ...but number if there is a control text on the paragraph
+          !['auto', 'on', 'start'].indexOf(setNum) > -1 &&
+          // ...or on the previous tag which is a list item
+          (i === 0 ||
+            !(state.tokens[i - 1].type === 'list_item_open' &&
+              ['auto', 'on', 'start'].indexOf(state.tokens[i - 1].attrGet(sign)) > -1)
+          )
+      ) continue
+
+      num.increment()
       num.insertAfter(i)
     }
 

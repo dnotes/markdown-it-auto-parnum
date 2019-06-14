@@ -87,7 +87,7 @@ the rigorous standards of proper science.
 
 ### Complete work
 
-- All citations in most news stories, e.g. "A recent study..."
+- All citations in most news stories, e.g. "A recent study..." {¶=auto}
 - All citations in most social media posts
 - Most hyperlinks
 - Citations for paraphrased ideas in academic writing (APA)
@@ -117,7 +117,7 @@ scaffolding to help an individual understand or remember the text.
 
 ### Section headings
 
-- Citations of literary works with multiple editions, in academic writing (MLA)
+- Citations of literary works with multiple editions, in academic writing (MLA) {¶=auto}
 - Citations of theatric works (scenes)
 - Citations of legal code
 
@@ -148,7 +148,7 @@ usually the inverse of its conciseness.
 
 ### Page numbers
 
-- Citations of direct quotes in academic writing (APA, MLA)
+- Citations of direct quotes in academic writing (APA, MLA) {¶=auto}
 - Citations of paraphrased ideas in academic writing (MLA)
 
 **Specificity: 8** \
@@ -170,7 +170,7 @@ the page number itself is inherently meaningless as a reference.
 
 ### Line numbers
 
-- Citations of computer programs
+- Citations of computer programs {¶=auto}
 - Citations of financial instruments, e.g. receipts, budgets
 
 **Specificity: 9** \
@@ -196,7 +196,7 @@ idea inside of it, that really doesn't add much to existing understanding.
 
 ### Paragraph numbers
 
-- Citations of religious works, e.g. John 3:16
+- Citations of religious works, e.g. John 3:16 {¶=auto}
 - Citations of legal code, e.g. 501.c.3
 - Citations of theatric works (not numbered, but as in "To be or not to be...")
 
@@ -247,11 +247,13 @@ and if each idea is contained in its own paragraph, then
 paragraph numbering needs to account for this in some way.
 
 There are several possible options, but for most cases we recommend
-(and this library explicitly supports) the following:
+(and this library explicitly supports) numbering \<blockquote\> and 
+\<li\> tags **only** if they contain actual \<p\> tags within.
 
--   Each list item or block quote receives its own paragraph number, 
-    which also applies to the first paragraph or text block inside it.
--   Each subsequent paragraph in the block receives its own number.
+In the case of a "tight list", where the list items are rendered
+without paragraphs within, it may sometimes be appropriate to number
+the first list item or the list itself, especially if the list functions 
+as a paragraph in its own right.
 
 ### Paragraphs that contain lists or blockquotes
 

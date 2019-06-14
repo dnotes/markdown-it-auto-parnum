@@ -1,21 +1,72 @@
-Bulleted and numbered lists
+Bulleted and numbered lists, tight
 .
 1.  List item.
 2.  List item.
 -   List item.
 -   List item.
+
+Paragraph text.
 .
 <ol>
-<li><a ¶="1" id="¶1" href="#¶1">1</a>List item.</li>
-<li><a ¶="2" id="¶2" href="#¶2">2</a>List item.</li>
+<li>List item.</li>
+<li>List item.</li>
 </ol>
 <ul>
-<li><a ¶="3" id="¶3" href="#¶3">3</a>List item.</li>
-<li><a ¶="4" id="¶4" href="#¶4">4</a>List item.</li>
+<li>List item.</li>
+<li>List item.</li>
 </ul>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
 .
 
-Paragraphs inside numbered lists
+Tight lists with numbering controls
+.
+-   list item {¶=auto}
+-   list item
+1.  list item {¶=on}
+2.  list item {¶=start}
+.
+<ul>
+<li ¶="auto"><a ¶="1" id="¶1" href="#¶1">1</a>list item</li>
+<li>list item</li>
+</ul>
+<ol>
+<li ¶="on"><a ¶="2" id="¶2" href="#¶2">2</a>list item</li>
+<li ¶="start"><a ¶="3" id="¶3" href="#¶3">3</a>list item</li>
+</ol>
+.
+
+Bulleted and numbered lists, expanded
+.
+1.  List item.
+
+2.  List item.
+
+-   List item.
+
+-   List item.
+
+Paragraph text.
+.
+<ol>
+<li>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>List item.</p>
+</li>
+<li>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>List item.</p>
+</li>
+</ol>
+<ul>
+<li>
+<p><a ¶="3" id="¶3" href="#¶3">3</a>List item.</p>
+</li>
+<li>
+<p><a ¶="4" id="¶4" href="#¶4">4</a>List item.</p>
+</li>
+</ul>
+<p><a ¶="5" id="¶5" href="#¶5">5</a>Paragraph text.</p>
+.
+
+Multiple paragraphs inside numbered lists
 .
 1.  List item paragraph.
 
@@ -37,7 +88,7 @@ Paragraphs inside numbered lists
 </ol>
 .
 
-Paragraphs inside bulleted lists
+Multiple paragraphs inside bulleted lists
 .
 -   List item paragraph.
 
@@ -85,7 +136,7 @@ Paragraphs inside block quotes
 </blockquote>
 .
 
-Multi-level lists
+Multi-level lists, tight
 .
 1.  List item text.
     -   Level 2.1
@@ -95,16 +146,56 @@ Multi-level lists
     2.  Level 2.2
 .
 <ol>
-<li><a ¶="1" id="¶1" href="#¶1">1</a>List item text.
+<li>List item text.
 <ul>
-<li><a ¶="2" id="¶2" href="#¶2">2</a>Level 2.1</li>
-<li><a ¶="3" id="¶3" href="#¶3">3</a>Level 2.2</li>
+<li>Level 2.1</li>
+<li>Level 2.2</li>
 </ul>
 </li>
-<li><a ¶="4" id="¶4" href="#¶4">4</a>List item text.
+<li>List item text.
 <ol>
-<li><a ¶="5" id="¶5" href="#¶5">5</a>Level 2.1</li>
-<li><a ¶="6" id="¶6" href="#¶6">6</a>Level 2.2</li>
+<li>Level 2.1</li>
+<li>Level 2.2</li>
+</ol>
+</li>
+</ol>
+.
+
+Multi-level lists, expanded
+.
+1.  List item text.
+
+    -   Level 2.1
+
+    -   Level 2.2
+
+2.  List item text.
+
+    1.  Level 2.1
+
+    2.  Level 2.2
+.
+<ol>
+<li>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>List item text.</p>
+<ul>
+<li>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>Level 2.1</p>
+</li>
+<li>
+<p><a ¶="3" id="¶3" href="#¶3">3</a>Level 2.2</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a ¶="4" id="¶4" href="#¶4">4</a>List item text.</p>
+<ol>
+<li>
+<p><a ¶="5" id="¶5" href="#¶5">5</a>Level 2.1</p>
+</li>
+<li>
+<p><a ¶="6" id="¶6" href="#¶6">6</a>Level 2.2</p>
+</li>
 </ol>
 </li>
 </ol>
