@@ -20,12 +20,12 @@ If you see constructions like "\[^1]" or {.class}, this is why.
 [markdown attributes]: https://github.com/arve0/markdown-it-attrs
 [markdown-it-attrs]: https://github.com/arve0/markdown-it-attrs
 
-## The purpose and nature of paragraphs
+## The purpose and nature of paragraphs {¶=1.0}
 
 Written texts are created to convey an author's ideas to a reader.
 Generally a written text contains ideas organized around a theme,
 and that theme may be broken down into smaller pieces:
-volumes, sections, chapters, paragraphs, sentences and words. {¶=1.0.1}
+volumes, sections, chapters, paragraphs, sentences and words.
 
 Words and sentences are the primary repositories of meaning,
 but paragraphs are most basic element for conveying a complete idea[^2].

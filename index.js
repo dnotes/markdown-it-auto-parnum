@@ -142,10 +142,10 @@ function autoParNum(state, options = {}) {
       tag = /^h\d$/.test(state.tokens[i].tag) ? state.tokens[i].tag : 'p'
       if ((setNum = state.tokens[i].attrGet(sign)) && /\d/.test(setNum)) {
         setNum = setNum.replace(/[0-9]+/g, '0')
-        if (scheme[tag] && scheme[tag] !== setNum) {
-          throw new Error(`Inconsistent numbering for <${tag}>: ${scheme[tag]} <> ${setNum}`)
+        if (!scheme[tag]) {
+          scheme[tag] = setNum
+          if (scheme.p.length < scheme[tag].length) scheme.p = scheme[tag] + delimiter + '0'
         }
-        scheme[tag] = setNum
       }
       headingCount[tag]++
     }
@@ -162,10 +162,6 @@ function autoParNum(state, options = {}) {
   ['h6', 'h5', 'h4', 'h3', 'h2', 'h1'].forEach((tag) => {
     if (scheme[tag]) {
       schemeLevels = scheme[tag].split(/[^0-9]+/).length
-      if (!scheme.p) {
-        scheme.p = scheme[tag] + delimiter + '0'
-        num.headingLevels = schemeLevels
-      }
       num.addHeadingElement(tag, schemeLevels)
     }
   })
@@ -174,7 +170,12 @@ function autoParNum(state, options = {}) {
   }
   if (num.elements.length <= num.headingLevels) {
     ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].some((tag) => {
-      if (headingCount[tag] > 1) {
+      if (headingCount[tag] > 1 && (
+        num.elements.length === 1 || (
+          num.elements.indexOf(tag) === -1 &&
+          num.elements[num.elements.length - 1] < tag
+        )
+      )) {
         num.addHeadingElement(tag)
       }
       if (num.elements.length > num.headingLevels) return true

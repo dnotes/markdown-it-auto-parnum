@@ -445,3 +445,141 @@ Paragraph text.
 <p><a ¶="4.1" id="¶4.1" href="#¶4.1">4.1</a>Paragraph text.</p>
 <p><a ¶="4.2" id="¶4.2" href="#¶4.2">4.2</a>Paragraph text.</p>
 .
+
+==========
+
+Deeper numbering, explicit tri-level numbering in paragraph
+.
+# Header
+
+Paragraph text.
+
+Paragraph text.
+
+## Header
+
+Paragraph text. {¶=1.0.1}
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+
+Paragraph text.
+
+## Header
+
+Paragraph text.
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+
+Paragraph text.
+.
+<h1>Header</h1>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
+<h2><a ¶="1" id="1" href="#1">1</a>Header</h2>
+<p ¶="1.0.1"><a ¶="1.0.1" id="¶1.0.1" href="#¶1.0.1">1.0.1</a>Paragraph text.</p>
+<p><a ¶="1.0.2" id="¶1.0.2" href="#¶1.0.2">1.0.2</a>Paragraph text.</p>
+<h3><a ¶="1.1" id="1.1" href="#1.1">1.1</a>Header</h3>
+<p><a ¶="1.1.1" id="¶1.1.1" href="#¶1.1.1">1.1.1</a>Paragraph text.</p>
+<p><a ¶="1.1.2" id="¶1.1.2" href="#¶1.1.2">1.1.2</a>Paragraph text.</p>
+<h3><a ¶="1.2" id="1.2" href="#1.2">1.2</a>Header</h3>
+<p><a ¶="1.2.1" id="¶1.2.1" href="#¶1.2.1">1.2.1</a>Paragraph text.</p>
+<p><a ¶="1.2.2" id="¶1.2.2" href="#¶1.2.2">1.2.2</a>Paragraph text.</p>
+<h2><a ¶="2" id="2" href="#2">2</a>Header</h2>
+<p><a ¶="2.0.1" id="¶2.0.1" href="#¶2.0.1">2.0.1</a>Paragraph text.</p>
+<p><a ¶="2.0.2" id="¶2.0.2" href="#¶2.0.2">2.0.2</a>Paragraph text.</p>
+<h3><a ¶="2.1" id="2.1" href="#2.1">2.1</a>Header</h3>
+<p><a ¶="2.1.1" id="¶2.1.1" href="#¶2.1.1">2.1.1</a>Paragraph text.</p>
+<p><a ¶="2.1.2" id="¶2.1.2" href="#¶2.1.2">2.1.2</a>Paragraph text.</p>
+<h3><a ¶="2.2" id="2.2" href="#2.2">2.2</a>Header</h3>
+<p><a ¶="2.2.1" id="¶2.2.1" href="#¶2.2.1">2.2.1</a>Paragraph text.</p>
+<p><a ¶="2.2.2" id="¶2.2.2" href="#¶2.2.2">2.2.2</a>Paragraph text.</p>
+.
+
+==========
+
+Deeper numbering, explicit tri-level numbering in header
+.
+# Header
+
+Paragraph text.
+
+Paragraph text.
+
+## Header {¶=1.0}
+
+Paragraph text.
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+
+Paragraph text.
+
+## Header
+
+Paragraph text.
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+
+Paragraph text.
+.
+<h1>Header</h1>
+<p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
+<h2 ¶="1.0"><a ¶="1" id="1" href="#1">1</a>Header</h2>
+<p><a ¶="1.0.1" id="¶1.0.1" href="#¶1.0.1">1.0.1</a>Paragraph text.</p>
+<p><a ¶="1.0.2" id="¶1.0.2" href="#¶1.0.2">1.0.2</a>Paragraph text.</p>
+<h3><a ¶="1.1" id="1.1" href="#1.1">1.1</a>Header</h3>
+<p><a ¶="1.1.1" id="¶1.1.1" href="#¶1.1.1">1.1.1</a>Paragraph text.</p>
+<p><a ¶="1.1.2" id="¶1.1.2" href="#¶1.1.2">1.1.2</a>Paragraph text.</p>
+<h3><a ¶="1.2" id="1.2" href="#1.2">1.2</a>Header</h3>
+<p><a ¶="1.2.1" id="¶1.2.1" href="#¶1.2.1">1.2.1</a>Paragraph text.</p>
+<p><a ¶="1.2.2" id="¶1.2.2" href="#¶1.2.2">1.2.2</a>Paragraph text.</p>
+<h2><a ¶="2" id="2" href="#2">2</a>Header</h2>
+<p><a ¶="2.0.1" id="¶2.0.1" href="#¶2.0.1">2.0.1</a>Paragraph text.</p>
+<p><a ¶="2.0.2" id="¶2.0.2" href="#¶2.0.2">2.0.2</a>Paragraph text.</p>
+<h3><a ¶="2.1" id="2.1" href="#2.1">2.1</a>Header</h3>
+<p><a ¶="2.1.1" id="¶2.1.1" href="#¶2.1.1">2.1.1</a>Paragraph text.</p>
+<p><a ¶="2.1.2" id="¶2.1.2" href="#¶2.1.2">2.1.2</a>Paragraph text.</p>
+<h3><a ¶="2.2" id="2.2" href="#2.2">2.2</a>Header</h3>
+<p><a ¶="2.2.1" id="¶2.2.1" href="#¶2.2.1">2.2.1</a>Paragraph text.</p>
+<p><a ¶="2.2.2" id="¶2.2.2" href="#¶2.2.2">2.2.2</a>Paragraph text.</p>
+.
