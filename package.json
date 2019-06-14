@@ -8,7 +8,7 @@
     "coverage": "yarn test && nyc report -r text-lcov | coveralls",
     "lint": "eslint .",
     "pub": "yarn lint && yarn test && make build && make publish",
-    "generate-tests": "mocha --reporter ./test/generate-tests.js",
+    "generate-tests": "./test/generate-tests.js",
     "test": "nyc --check-coverage --lines 100 mocha"
   },
   "keywords": [
