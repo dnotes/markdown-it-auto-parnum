@@ -21,15 +21,15 @@ const assert = require('assert')
 const cm = require('markdown-it')('commonmark', { typographer: true })
   .enable(['linkify', 'smartquotes', 'replacements'])
   .use(require('../'))
-const manifesto = fs.readFileSync(path.resolve(__dirname, '../manifesto.md'), 'utf8')
-  .toString()
-  .replace(/(.+<body>\n|\n<\/body>.+)/gm, '')
+const manifesto = fs.readFileSync(path.resolve(__dirname, '../manifesto.md'), 'utf8').toString()
 const rendered = {
   commonmark: '',
   extended: '',
 }
 ;['commonmark', 'extended'].forEach((x) => {
-  rendered[x] = fs.readFileSync(path.resolve(__dirname, `fixtures/html/manifesto-${x}.html`), 'utf8').toString()
+  rendered[x] = fs.readFileSync(path.resolve(__dirname, `fixtures/html/manifesto-${x}.html`), 'utf8')
+    .toString()
+    .replace(/(.+<body>\n|\n<\/body>.+)/gm, '')
 })
 // In order to work with the test generator, each it() must begin with a word and colon, e.g. "Word:"
 // which must also be used as a suffix for the html file, e.g. fixtures/manifesto-word.html
