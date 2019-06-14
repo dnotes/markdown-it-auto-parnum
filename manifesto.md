@@ -5,7 +5,7 @@ Esteemed reader, {.greeting ¶=none}
 This is a manifesto about the importance of numbering paragraphs.
 It is part of a markdown-it plugin for rendering
 [automatic paragraph numbering in markdown texts], 
-and it also functions as the test suite for that plugin.[^1]
+and it also functions as part of the test suite for that plugin.[^1]
 
 [automatic paragraph numbering in markdown texts]: 
 https://github.com/dnotes/markdown-it-auto-parnum
