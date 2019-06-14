@@ -13,12 +13,13 @@ class Counter {
    * Inserts a paragraph number token after token[i]
    * @param {number} i the index of the token which should be followed by a paragraph number
    */
-  insertAfter(i) {
+  insertAfter(i, heading = false) {
+    let sign = heading ? this.options.headingSign : this.options.sign
     let token = new this.state.Token('paragraph_number', 'a', 0)
     token.content = this.value
     token.attrPush([this.options.sign, this.value])
-    token.attrPush(['id', this.options.sign + this.value])
-    if (this.options.addLinks) token.attrPush(['href', `#${this.options.sign}${this.value}`])
+    token.attrPush(['id', sign + this.value])
+    if (this.options.addLinks) token.attrPush(['href', `#${sign}${this.value}`])
     this.state.tokens.splice(i + 1, 0, token)
     this.state.tokens[i].block = false
   }
@@ -63,11 +64,15 @@ class Counter {
   }
 
   set value(num) {
-    this._value = num.split(/(\d+)/).filter(v => v.length).reverse()
+    let newValue = [...this._value].reverse().join('').replace(/\d+/g, 0).split(/(\d+)/).filter(v => v.length)
+    num.split(/(\d+)/).filter(v => v.length).forEach((v, i) => {
+      newValue[i] = v
+    })
+    this._value = newValue.reverse()
   }
 
   get value() {
-    return [...this._value].reverse().join('').replace(/^[0\.]+/, '')
+    return [...this._value].reverse().join('').replace(/(?:^[0\D]+|(?:[\D]+0)+$)/, '')
   }
 
   set headingLevels(x) {
@@ -77,7 +82,7 @@ class Counter {
     if (this._elements.length < x + 1) {
       this._elements.fill(false, this._elements.length, x - this._elements.length)
     }
-    this.value = '0'.repeat(x).split('').join(this.options.delimiter)
+    this._value = '0'.repeat(x).split('').join(this.options.delimiter).split(/(0)/).filter(v => v.length)
   }
 
   get headingLevels() {
@@ -105,6 +110,12 @@ function autoParNum(state, options = {}) {
 
   // sign: The sign used for paragraph numbering attributes.
   let sign = options.sign = options.sign || '¶'
+
+  // headingSign: The sign used for the ids generated for heading numbers
+  options.headingSign = options.headingSign || ''
+
+  // numberHeadings: Whether to number the headers
+  let numberHeadings = options.numberHeadings === false ? false : true
 
   // delimiter: The delimiter that will be used for multi-level numbering,
   // unless explicitly specified in the document with ¶= attributes.
@@ -173,36 +184,37 @@ function autoParNum(state, options = {}) {
 
 
   for (let i = 0; i < state.tokens.length; ++i) {
+    if (state.tokens[i].type === 'paragraph_number') continue
     token = state.tokens[i]
     setNum = state.tokens[i].attrGet(sign)
+
+    switch (setNum) {
+      case null:
+        break
+      case 'stop':
+      case 'off':
+        numbersOn = false
+      case 'none':
+      case 'skip':
+        continue
+      case 'auto':
+      case 'on':
+      case 'start':
+        numbersOn = true
+        break
+      default:
+        if (/\d/.test(setNum)) {
+          num.value = setNum
+          numbersOn = true
+          // If the number has been specified, it must be added immediately to avoid incrementing
+          num.insertAfter(i, /^h\d$/.test(token.tag))
+          continue
+        }
+    }
 
     // Tags that may be numbered
     /* eslint no-fallthrough: 0 */
     if (nesting === 0 && numberedElements.indexOf(token.type) > -1) {
-      switch (setNum) {
-        case null:
-          break
-        case 'stop':
-        case 'off':
-          numbersOn = false
-        case 'none':
-        case 'skip':
-          continue
-        case 'auto':
-        case 'on':
-        case 'start':
-          numbersOn = true
-          break
-        default:
-          if (/\d/.test(setNum)) {
-            num.value = setNum
-            numbersOn = true
-            // If the number has been specified, it must be added immediately to avoid incrementing
-            num.insertAfter(i)
-            continue
-          }
-      }
-
       // Don't number if the numbering is off
       if (!numbersOn) continue
       // Don't number if the element is completely empty
@@ -228,8 +240,9 @@ function autoParNum(state, options = {}) {
     }
 
     // Tags that may affect numbering
-    else if (nesting === 0 && token.type === 'heading_open') {
+    else if (nesting === 0 && numbersOn && token.type === 'heading_open') {
       num.increment(state.tokens[i].tag)
+      if (numberHeadings && num.elements.indexOf(token.tag) > 0) num.insertAfter(i, true)
     }
 
     else if (skippedElements.indexOf(token.type) > -1) {

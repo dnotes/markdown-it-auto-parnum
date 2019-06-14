@@ -7,6 +7,12 @@ a[¶] {
   margin-top: .3em;
   text-decoration: none;
 }
+h1 a[¶],h2 a[¶],h3 a[¶],h4 a[¶],h5 a[¶],h6 a[¶] {
+  display: inline-block;
+  font-size: inherit;
+  opacity: 1;
+  margin-top: 0;
+}
 
 body {
   margin: 5% 10% 5% 2%;
