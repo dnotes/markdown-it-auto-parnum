@@ -1,0 +1,58 @@
+Options { sign: '§', delimiter: ':', addLinks: false }
+.
+Paragraph text. {¶=1 §=2}
+.
+<p ¶="1" §="2"><a §="2" id="§2">2</a>Paragraph text.</p>
+.
+
+Options { numberHeadings: false, headingLevels: 2 }
+.
+# Header
+
+Paragraph text.
+
+## Header
+
+Paragraph text.
+
+## Header
+
+Paragraph text.
+
+# Header
+
+Paragraph text.
+
+## Header
+
+Paragraph text.
+
+## Header
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+
+### Header
+
+Paragraph text.
+.
+<h1>Header</h1>
+<p><a §="1:0:1" id="§1:0:1">1:0:1</a>Paragraph text.</p>
+<h2>Header</h2>
+<p><a §="1:1:1" id="§1:1:1">1:1:1</a>Paragraph text.</p>
+<h2>Header</h2>
+<p><a §="1:2:1" id="§1:2:1">1:2:1</a>Paragraph text.</p>
+<h1>Header</h1>
+<p><a §="2:0:1" id="§2:0:1">2:0:1</a>Paragraph text.</p>
+<h2>Header</h2>
+<p><a §="2:1:1" id="§2:1:1">2:1:1</a>Paragraph text.</p>
+<h2>Header</h2>
+<p><a §="2:2:1" id="§2:2:1">2:2:1</a>Paragraph text.</p>
+<h3>Header</h3>
+<p><a §="2:2:2" id="§2:2:2">2:2:2</a>Paragraph text.</p>
+<h3>Header</h3>
+<p><a §="2:2:3" id="§2:2:3">2:2:3</a>Paragraph text.</p>
+.

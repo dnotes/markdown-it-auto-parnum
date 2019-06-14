@@ -1,0 +1,33 @@
+Empty paragraphs in containers do not receive numbers
+.
+> **Paragraph text.**
+>
+> {¶=¶}
+.
+<blockquote ¶="¶">
+<p><a ¶="1" id="¶1" href="#¶1">1</a><strong>Paragraph text.</strong></p>
+<p></p>
+</blockquote>
+.
+
+Inconsistent numbering schemes are unsupported
+.
+Paragraph text. {¶=1}
+
+Paragraph text.
+
+Paragraph text. {¶=1.1}
+
+Paragraph text.
+
+Paragraph text. {¶=3}
+
+Paragraph text.
+.
+<p ¶="1"><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
+<p><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
+<p ¶="1.1"><a ¶="1.1" id="¶1.1" href="#¶1.1">1.1</a>Paragraph text.</p>
+<p><a ¶="1.2" id="¶1.2" href="#¶1.2">1.2</a>Paragraph text.</p>
+<p ¶="3"><a ¶="3" id="¶3" href="#¶3">3</a>Paragraph text.</p>
+<p><a ¶="3.1" id="¶3.1" href="#¶3.1">3.1</a>Paragraph text.</p>
+.

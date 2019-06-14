@@ -4,17 +4,31 @@
 // RUN REGULAR TESTS
 const path = require('path')
 const generate = require('markdown-it-testgen')
+const plugin = require('..')
 const md = require('markdown-it')('commonmark', { typographer: true })
   .enable(['linkify', 'smartquotes', 'replacements'])
-  .use(require('../'))
+  .use(plugin)
+  .use(require('markdown-it-attrs'))
+  .use(require('markdown-it-footnote'))
+const opt = require('markdown-it')('commonmark', { typographer: true })
+  .enable(['linkify', 'smartquotes', 'replacements'])
+  .use(plugin) // This is to test that the plugin options can be overridden by calling md.use again
+  .use(plugin, {
+    sign: '§',
+    delimiter: ':',
+    numberHeadings: false,
+    headingLevels: 2,
+    addLinks: false,
+  })
   .use(require('markdown-it-attrs'))
   .use(require('markdown-it-footnote'))
 describe('Run test fixtures', function () {
-  generate(path.join(__dirname, 'fixtures/basics.txt'), { header: true }, md)
   generate(path.join(__dirname, 'fixtures/multilevel.txt'), { header: true }, md)
   generate(path.join(__dirname, 'fixtures/control.txt'), { header: true }, md)
   generate(path.join(__dirname, 'fixtures/containers.txt'), { header: true }, md)
   generate(path.join(__dirname, 'fixtures/footnotes.txt'), { header: true }, md)
+  generate(path.join(__dirname, 'fixtures/edge-cases.txt'), { header: true }, md)
+  generate(path.join(__dirname, 'fixtures/options.txt'), { header: true }, opt)
 })
 
 // TESTING A LARGE FILE
@@ -22,7 +36,7 @@ const fs = require('fs')
 const assert = require('assert')
 const cm = require('markdown-it')('commonmark', { typographer: true })
   .enable(['linkify', 'smartquotes', 'replacements'])
-  .use(require('../'))
+  .use(plugin)
 const manifesto = fs.readFileSync(path.resolve(__dirname, '../manifesto.md'), 'utf8').toString()
 const rendered = {
   commonmark: '',

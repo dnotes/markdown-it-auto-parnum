@@ -1,12 +1,12 @@
 'use strict'
 
 class Counter {
-  constructor(state, options = {}) {
+  constructor(state, options) {
     this.state = state
     this.options = options
     this._elements = ['p']
     this._value = []
-    this._headingLevels = typeof options.headingLevels === 'undefined' ? 1 : options.headingLevels
+    this._headingLevels = options.headingLevels
   }
 
   /**
@@ -76,10 +76,10 @@ class Counter {
   }
 
   set headingLevels(x) {
-    this._headingLevels = x
-    x++ // number of elements
+    this._headingLevels = x // Number of headings
+    x++ // Number of elements (including the paragraph numbers)
     this._elements = this._elements.filter(v => v)
-    if (this._elements.length < x + 1) {
+    if (this._elements.length < x) {
       this._elements.fill(false, this._elements.length, x - this._elements.length)
     }
     this._value = '0'.repeat(x).split('').join(this.options.delimiter).split(/(0)/).filter(v => v.length)
@@ -94,169 +94,178 @@ class Counter {
   }
 }
 
-function autoParNum(state, options = {}) {
+module.exports = function plugin(md, options = {}) {
 
-  // OPTIONS
+  function autoParNum(state) {
 
-  // numberedElements: A comma-separated string of markdown-it token types
-  // which should receive paragraph numbers.
-  let numberedElements = (options.numberedElements || 'paragraph')
-    .replace(/(,|$)+/g, '_open$&').split(',').filter(v => v)
+    // OPTIONS
 
-  // skippedElements: A comma-separated list of markdown-it token types
-  // inside which NO ELEMENTS should be numbered
-  let skippedElements = (options.skipElements || 'footnote_block')
-    .replace(/(.+?)(,|$)+/g, '$1_open,$1_close$2').split(',').filter(v => v)
+    // numberedElements: A comma-separated string of markdown-it token types
+    // which should receive paragraph numbers.
+    let numberedElements = (options.numberedElements || 'paragraph')
+      .replace(/(,|$)+/g, '_open$&').split(',').filter(v => v)
 
-  // sign: The sign used for paragraph numbering attributes.
-  let sign = options.sign = options.sign || '¶'
+    // skippedElements: A comma-separated list of markdown-it token types
+    // inside which NO ELEMENTS should be numbered
+    let skippedElements = (options.skipElements || 'footnote_block')
+      .replace(/(.+?)(,|$)+/g, '$1_open,$1_close$2').split(',').filter(v => v)
 
-  // headingSign: The sign used for the ids generated for heading numbers
-  options.headingSign = options.headingSign || ''
+    // sign: The sign used for paragraph numbering attributes.
+    let sign = options.sign = options.sign || '¶'
 
-  // numberHeadings: Whether to number the headers
-  let numberHeadings = options.numberHeadings === false ? false : true
+    // headingSign: The sign used for the ids generated for heading numbers
+    options.headingSign = options.headingSign || ''
 
-  // delimiter: The delimiter that will be used for multi-level numbering,
-  // unless explicitly specified in the document with ¶= attributes.
-  let delimiter = options.delimiter = options.delimiter || '.'
+    // numberHeadings: Whether to number the headers
+    let numberHeadings = options.numberHeadings === false ? false : true
 
-  // addLinks: Whether to add href to paragraph number anchors
-  options.addLinks = typeof options.addLinks !== 'undefined' ? Boolean(options.addLinks) : true
+    // headingLevels: The maximum number of headings to include in multi-level
+    // paragraph numbers, unless explicitly specified in a document.
+    options.headingLevels = typeof options.headingLevels === 'undefined' ? 1 : options.headingLevels
 
-  // Variables for parsing
-  let num = new Counter(state, options)
-  let setNum
-  let headingCount = { p:0, h1:0, h2:0, h3:0, h4:0, h5:0, h6:0 }
-  let scheme = { p:'', h1:'', h2:'', h3:'', h4:'', h5:'', h6:'' }
-  let schemeLevels
-  let tag
-  let token
-  let numbersOn = true
-  let nesting = 0
+    // delimiter: The delimiter that will be used for multi-level numbering,
+    // unless explicitly specified in the document with ¶= attributes.
+    let delimiter = options.delimiter = options.delimiter || '.'
 
-  // Parse headers and paragraphs to determine numbering scheme
-  for (let i = 0; i < state.tokens.length; i++) {
-    // We should check all tokens of types that can be numbered, as well as all headers
-    if ((numberedElements + ',heading_open').indexOf(state.tokens[i].type) > -1) {
-      tag = /^h\d$/.test(state.tokens[i].tag) ? state.tokens[i].tag : 'p'
-      if ((setNum = state.tokens[i].attrGet(sign)) && /\d/.test(setNum)) {
-        setNum = setNum.replace(/[0-9]+/g, '0')
-        if (!scheme[tag]) {
-          scheme[tag] = setNum
-          if (scheme.p.length < scheme[tag].length) scheme.p = scheme[tag] + delimiter + '0'
+    // addLinks: Whether to add href to paragraph number anchors
+    options.addLinks = typeof options.addLinks !== 'undefined' ? Boolean(options.addLinks) : true
+
+    // Variables for parsing
+    let num = new Counter(state, options)
+    let setNum
+    let headingCount = { p:0, h1:0, h2:0, h3:0, h4:0, h5:0, h6:0 }
+    let scheme = { p:'', h1:'', h2:'', h3:'', h4:'', h5:'', h6:'' }
+    let schemeLevels
+    let tag
+    let token
+    let numbersOn = true
+    let nesting = 0
+
+    // Parse headers and paragraphs to determine numbering scheme
+    for (let i = 0; i < state.tokens.length; i++) {
+      // We should check all tokens of types that can be numbered, as well as all headers
+      if ((numberedElements + ',heading_open').indexOf(state.tokens[i].type) > -1) {
+        tag = /^h\d$/.test(state.tokens[i].tag) ? state.tokens[i].tag : 'p'
+        if ((setNum = state.tokens[i].attrGet(sign)) && /\d/.test(setNum)) {
+          setNum = setNum.replace(/[0-9]+/g, '0')
+          if (!scheme[tag]) {
+            scheme[tag] = setNum
+            if (scheme.p.length < scheme[tag].length) scheme.p = scheme[tag] + delimiter + '0'
+          }
         }
+        headingCount[tag]++
       }
-      headingCount[tag]++
     }
-  }
-  // If numbering scheme is set by attrs, set headingElements here:
-  // paragraphs only: [p]
-  // h1.h2.p [p, h2, h1]
-  // h2.h4.p [p, h4, h2]
-  /* eslint no-shadow: 0 */
-  /* eslint consistent-return: 0 */
-  if (scheme.p) {
-    num.headingLevels = scheme.p.split(/[^0-9]+/).length - 1
-  }
-  ['h6', 'h5', 'h4', 'h3', 'h2', 'h1'].forEach((tag) => {
-    if (scheme[tag]) {
-      schemeLevels = scheme[tag].split(/[^0-9]+/).length
-      num.addHeadingElement(tag, schemeLevels)
+    // If numbering scheme is set by attrs, set headingElements here:
+    // paragraphs only: [p]
+    // h1.h2.p [p, h2, h1]
+    // h2.h4.p [p, h4, h2]
+    /* eslint no-shadow: 0 */
+    /* eslint consistent-return: 0 */
+    if (scheme.p) {
+      num.headingLevels = scheme.p.split(/[^0-9]+/).length - 1
     }
-  })
-  if (!scheme.p) {
-    scheme.p = '0'.repeat(num.headingLevels + 1).split('').join(delimiter)
-  }
-  if (num.elements.length <= num.headingLevels) {
-    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].some((tag) => {
-      if (headingCount[tag] > 1 && (
-        num.elements.length === 1 || (
-          num.elements.indexOf(tag) === -1 &&
-          num.elements[num.elements.length - 1] < tag
-        )
-      )) {
-        num.addHeadingElement(tag)
+    ['h6', 'h5', 'h4', 'h3', 'h2', 'h1'].forEach((tag) => {
+      if (scheme[tag]) {
+        schemeLevels = scheme[tag].split(/[^0-9]+/).length
+        num.addHeadingElement(tag, schemeLevels)
       }
-      if (num.elements.length > num.headingLevels) return true
     })
-  }
-  num.headingLevels = num.elements.filter(v => v).length - 1
-
-
-  for (let i = 0; i < state.tokens.length; ++i) {
-    if (state.tokens[i].type === 'paragraph_number') continue
-    token = state.tokens[i]
-    setNum = state.tokens[i].attrGet(sign)
-
-    switch (setNum) {
-      case null:
-        break
-      case 'stop':
-      case 'off':
-        numbersOn = false
-      case 'none':
-      case 'skip':
-        continue
-      case 'auto':
-      case 'on':
-      case 'start':
-        numbersOn = true
-        break
-      default:
-        if (/\d/.test(setNum)) {
-          num.value = setNum
-          numbersOn = true
-          // If the number has been specified, it must be added immediately to avoid incrementing
-          num.insertAfter(i, /^h\d$/.test(token.tag))
-          continue
-        }
+    if (!scheme.p) {
+      scheme.p = '0'.repeat(num.headingLevels + 1).split('').join(delimiter)
     }
-
-    // Tags that may be numbered
-    /* eslint no-fallthrough: 0 */
-    if (nesting === 0 && numberedElements.indexOf(token.type) > -1) {
-      // Don't number if the numbering is off
-      if (!numbersOn) continue
-      // Don't number if the element is completely empty
-      if (state.tokens[i + 2].tag === state.tokens[i].tag &&
-          state.tokens[i + 1].type === 'inline' &&
-          state.tokens[i + 1].children.length === 1 &&
-          state.tokens[i + 1].children[0].type === 'text' &&
-          state.tokens[i + 1].children[0].content.trim() === ''
-      ) continue
-      // Don't number if paragraphs are hidden, as in tight lists
-      if (token.hidden &&
-          // ...but number if there is a control text on the paragraph
-          !['auto', 'on', 'start'].indexOf(setNum) > -1 &&
-          // ...or on the previous tag which is a list item
-          (i === 0 ||
-            !(state.tokens[i - 1].type === 'list_item_open' &&
-              ['auto', 'on', 'start'].indexOf(state.tokens[i - 1].attrGet(sign)) > -1)
+    if (num.elements.length <= num.headingLevels) {
+      ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].some((tag) => {
+        if (headingCount[tag] > 1 && (
+          num.elements.length === 1 || (
+            num.elements.indexOf(tag) === -1 &&
+            num.elements[num.elements.length - 1] < tag
           )
-      ) continue
-
-      num.increment()
-      num.insertAfter(i)
+        )) {
+          num.addHeadingElement(tag)
+        }
+        if (num.elements.length > num.headingLevels) return true
+      })
     }
+    num.headingLevels = num.elements.filter(v => v).length - 1
 
-    // Tags that may affect numbering
-    else if (nesting === 0 && numbersOn && token.type === 'heading_open') {
-      num.increment(state.tokens[i].tag)
-      if (numberHeadings && num.elements.indexOf(token.tag) > 0) num.insertAfter(i, true)
-    }
+    for (let i = 0; i < state.tokens.length; ++i) {
+      if (state.tokens[i].type === 'paragraph_number') continue
+      token = state.tokens[i]
+      setNum = state.tokens[i].attrGet(sign)
 
-    else if (skippedElements.indexOf(token.type) > -1) {
-      nesting += token.nesting
+      switch (setNum) {
+        case null:
+          break
+        case 'stop':
+        case 'off':
+          numbersOn = false
+        case 'none':
+        case 'skip':
+          continue
+        case 'auto':
+        case 'on':
+        case 'start':
+          numbersOn = true
+          break
+        default:
+          if (/\d/.test(setNum)) {
+            num.value = setNum
+            numbersOn = true
+            // If the number has been specified, it must be added immediately to avoid incrementing
+            num.insertAfter(i, /^h\d$/.test(token.tag))
+            continue
+          }
+      }
+
+      // Tags that may be numbered
+      /* eslint no-fallthrough: 0 */
+      if (nesting === 0 && numberedElements.indexOf(token.type) > -1) {
+        // Don't number if the numbering is off
+        if (!numbersOn) continue
+        // Don't number if the element is completely empty
+        if (state.tokens[i + 2].tag === state.tokens[i].tag &&
+            state.tokens[i + 1].type === 'inline' &&
+            state.tokens[i + 1].children.length === 1 &&
+            state.tokens[i + 1].children[0].type === 'text' &&
+            state.tokens[i + 1].children[0].content.trim() === ''
+        ) continue
+        // Don't number if paragraphs are hidden, as in tight lists
+        if (token.hidden &&
+            // ...but number if there is a control text on the paragraph
+            !['auto', 'on', 'start'].indexOf(setNum) > -1 &&
+            // ...or on the previous tag which is a list item
+            (i === 0 ||
+              !(state.tokens[i - 1].type === 'list_item_open' &&
+                ['auto', 'on', 'start'].indexOf(state.tokens[i - 1].attrGet(sign)) > -1)
+            )
+        ) continue
+
+        num.increment()
+        num.insertAfter(i)
+      }
+
+      // Tags that may affect numbering
+      else if (nesting === 0 && numbersOn && token.type === 'heading_open') {
+        num.increment(state.tokens[i].tag)
+        if (numberHeadings && num.elements.indexOf(token.tag) > 0) num.insertAfter(i, true)
+      }
+
+      else if (skippedElements.indexOf(token.type) > -1) {
+        nesting += token.nesting
+      }
+
     }
 
   }
 
-}
-
-module.exports = function plugin(md, options) {
   md.renderer.rules.paragraph_number = function (tokens, idx, options, env, slf) {
     return `<a${slf.renderAttrs(tokens[idx])}>${tokens[idx].content}</a>`
   }
-  md.core.ruler.push('autoParNum', autoParNum, options)
+  if (md.core.ruler.__find__('autoParNum') > -1) {
+    md.core.ruler.at('autoParNum', autoParNum)
+  }
+  else {
+    md.core.ruler.push('autoParNum', autoParNum)
+  }
 }
