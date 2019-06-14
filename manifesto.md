@@ -10,14 +10,15 @@ and it also functions as the test suite for that plugin.[^1]
 [automatic paragraph numbering in markdown texts]: 
 https://github.com/dnotes/markdown-it-auto-parnum
 
-[^1]: This text uses [markdown footnotes], 
-which are not supported in Github-flavored Markdown.
-If you see a construction like "\[^1]" in this text,
-it represents a footnote. It also uses [markdown attributes], 
-which appear inside {brackets}.
+[^1]: This text uses [markdown footnotes] and [markdown attributes].
+These are extensions to Markdown and the Commonmark spec,
+and they are not supported in all contexts (e.g. on Github).
+If you see constructions like "\[^1]" or {.class}, this is why.
 
 [markdown footnotes]: https://github.com/markdown-it/markdown-it-footnote
+[markdown-it-footnote]: https://github.com/markdown-it/markdown-it-footnote
 [markdown attributes]: https://github.com/arve0/markdown-it-attrs
+[markdown-it-attrs]: https://github.com/arve0/markdown-it-attrs
 
 ## The purpose and nature of paragraphs
 
@@ -93,21 +94,21 @@ the rigorous standards of proper science.
 - Citations of auditory works, e.g. podcast episodes
 - Citations of stories in oral traditions?
 
-**Specificity: 1**  
+**Specificity: 1** \
 It's hard to get less specific than citing a whole work.
 Perhaps one could accomplish this by citing an author without
 specifying a work, e.g. "Thomas Jefferson once wrote that..."
 
-**Conciseness: 10**  
+**Conciseness: 10** \
 Every reference must contain the full work, so there is no 
 reasonable way to obtain a more concise reference.
 
-**Portability: 7**  
+**Portability: 7** \
 Citing a complete work is quite portable, although some issues
 arise when a work has multiple editions. For example, "the Bible"
 is sometimes cited without reference to a particular translation.
 
-**Meaningfulness: 3**  
+**Meaningfulness: 3** \
 For sharing information, it is quite meaningful to know the work
 from which an idea came. However, it is also quite possible to 
 convey a lot *more* meaning in a reference when collaborating.
@@ -120,11 +121,11 @@ scaffolding to help an individual understand or remember the text.
 - Citations of theatric works (scenes)
 - Citations of legal code
 
-**Specificity: 4-8**  
+**Specificity: 4-8** \
 Section headers can be quite specific, but it really depends on the size of
 the sections.
 
-**Conciseness: 4-9**
+**Conciseness: 4-9** \
 There is a wide range on the conciseness of section header references,
 generally inversely related to the meaningfulness and specificity of the 
 reference: if the headers are short and specific, e.g. "Chapter 1", then
@@ -132,11 +133,11 @@ they are relatively meaningless and probably not very specific, but if
 they are meaningful and specific, then the citations will clutter the
 citing work to the point of unreadability.
 
-**Portability: 9**  
+**Portability: 9** \
 Section headers generally apply quite well across all versions or editions
 of a text, since changes over time and differences between formats are rare.
 
-**Meaningfulness: 6-10**  
+**Meaningfulness: 6-10** \
 Section headers can be an extremely meaningful referencing scheme, in that
 each reference contains within itself a complete meaning. This is why some
 reading coaches have recommended that when reading a book for information,
@@ -150,18 +151,18 @@ usually the inverse of its conciseness.
 - Citations of direct quotes in academic writing (APA, MLA)
 - Citations of paraphrased ideas in academic writing (MLA)
 
-**Specificity: 8**  
+**Specificity: 8** \
 Page numbers can get you within a few lines of a small selection from a
 large text.
 
-**Conciseness: 8**  
+**Conciseness: 8** \
 Page references are concise.
 
-**Portability: 0**  
+**Portability: 0** \
 Page numbers simply aren't portable. Online sources are rarely paginated
 and new editions of print texts change page numbers.
 
-**Meaningfulness: 3**  
+**Meaningfulness: 3** \
 Page numbers *might* mean something to people with very visual memory, and
 they do give some indication whether a work might be very long, but since
 the format of a page is not in any way related to the meaning of its content,
@@ -172,14 +173,14 @@ the page number itself is inherently meaningless as a reference.
 - Citations of computer programs
 - Citations of financial instruments, e.g. receipts, budgets
 
-**Specificity: 9**  
+**Specificity: 9** \
 The only way to get more specific is to number the characters in the line
 ---which is also used in referencing computer programs, e.g. when debugging.
 
-**Conciseness: 8**
+**Conciseness: 8** \
 Line number references are concise.
 
-**Portability: 2** (8 for computer programs)  
+**Portability: 2** (8 for computer programs) \
 Line numbers are portable for computer programs, because computer programs
 are stored in files of arbitrary width and length and are organized into 
 small statements that are most conveniently delineated by line breaks.
@@ -187,7 +188,7 @@ For most other written works, line numbers would not be portable at all,
 because content of the lines would be determined by the width of the media
 or rendering device.
 
-**Meaningfulness: 2** (8 for computer programs)
+**Meaningfulness: 2** (8 for computer programs) \
 Line numbers are meaningful for computer programs because they generally
 contain discreet statements. For other texts, While line numbers may convey
 some understanding of the probable length of a work and the position of an
@@ -196,21 +197,21 @@ idea inside of it, that really doesn't add much to existing understanding.
 ### Paragraph numbers
 
 - Citations of religious works, e.g. John 3:16
-- Citations of legal code, e.g. 501(c)(3)
+- Citations of legal code, e.g. 501.c.3
 - Citations of theatric works (not numbered, but as in "To be or not to be...")
 
-**Specificity: 8**  
+**Specificity: 8** \
 Paragraph references will get you within a few sentences of any passage.
 
-**Conciseness: 8**  
+**Conciseness: 8** \
 Paragraph references are concise.
 
-**Portability: 9**  
+**Portability: 9** \
 Paragraph numbers can change between editions of written works or versions
 of online documents, but this is quite rare. Format and medium does not
 affect paragraph numbering.
 
-**Meaningfulness: 4-10**  
+**Meaningfulness: 4-10** \
 The meaningfulness of paragraph numbers begins at a relatively low level,
 but it grows in proportion to a reader's familiarity with the content. 
 For content that is expected to be mastered and memorized, paragraph 
@@ -232,49 +233,25 @@ content in history. Given all the benefits of paragraph references,
 we should support their use, and we can do so simply by numbering
 the paragraphs in our documents.
 
-## Considerations when numbering paragraphs
-
-### Dealing with HTML: there are paragraphs, and then there are \<p>aragraphs
+## Dealing with HTML: there are paragraphs, and then there are \<p>aragraphs
 
 HTML has revolutionzied the creation of written works in many ways,
 some of which raise difficult questions in relation to paragraph numbering.
 
-1.  Since block quotes and list items can contain multiple paragraphs,
-    is there a consistent way to number those paragraph elements?
-    For example, if this list item contains multiple distinct ideas, 
-    and if each idea is contained in its own paragraph, then 
-    paragraph numbering needs to account for this in some way.
-    There are a few options:
+### Paragraphs within block quotes and list items
 
-    1.  Number paragraphs within list items, continuing the numbering
-        from outside the list item
+Since block quotes and list items can contain multiple paragraphs,
+is there a consistent way to number those paragraph elements?
+For example, if this list item contains multiple distinct ideas, 
+and if each idea is contained in its own paragraph, then 
+paragraph numbering needs to account for this in some way.
 
-    2.  Number paragraphs within list items, but in some way that
-        takes into account the number of the list item
+There are several possible options, but for most cases we recommend
+(and this library explicitly supports) the following:
 
-    3.  Number each list item with a paragraph number, but don't
-        number the paragraphs inside of them
-
-    4.  Number lists as a separate paragraph, but don't number
-        list items
-
-    5.  Just forget about numbering anything within a list
-
-    One may well wonder, in this connection, what on earth the makers
-    of the HTML specification were smoking when they decided that 
-    an element called "list item" could contain "paragraph" items.
-    Is not, one might justifiably ask, the designation "item" the most 
-    self-evidently clear indication of the atomic nature of a thing? 
-    When has an "item" ever contained other "items" *that are larger*?
-    Whence then this continued insistance upon subdividable list items?
-    If a single "list item" contains multiple ideas of paragraph length, 
-    shouldn't it really be a section header with paragraphs?
-    Seriously, doesn't this list item annoy you at least a little bit?
-
-    ---It does?
-
-    Good, then let's switch back to the relative sanity of headers,
-    and we can all agree that paragraphs inside list items are **bad**.
+-   Each list item or block quote receives its own paragraph number, 
+    which also applies to the first paragraph or text block inside it.
+-   Each subsequent paragraph in the block receives its own number.
 
 ### Paragraphs that contain lists or blockquotes
 
@@ -289,8 +266,9 @@ in cases where a phrase leads directly into a long quotation
 > In this and the later examples we use “Lorem ipsum” text to ensure 
 > that each block quotation contains 40 words or more. Lorem ipsum 
 > dolor sit amet, consectetur adipiscing elit.
-> ([APA Blog](https://blog.apastyle.org/files/block-quotations.pdf))
-> {¶=none}
+> ([APA Blog](https://blog.apastyle.org/files/block-quotations.pdf)) {¶=none}
+>
+> {¶=¶}
 
 In HTML, one would be obliged to end this \<p> before the quote,
 because \<blockquote\>s are not permitted within \<p> elements.
@@ -298,43 +276,46 @@ This does not make sense, because it's a *paragraph* and it needs
 to contain a *complete idea* and then ***end with a period***!
 ---or perhaps an exclamation mark.
 
-Either way, the quotation above is clearly a part of the paragraph
-and should not receive its own paragraph number.
-
-In cases like this, one could try to use the inline \<q> element, 
-but such a usage would require a special class and styling so that
-the \<q> appears on a new line and indented, and that's not right.
-Also sometimes a long quote may start in the above manner but then
-go on for multiple paragraphs, and maybe those pararaphs should get
-their own paragraph numbers, but not the first.
+In any case, the quotation above is clearly a part of the paragraph,
+and it probably should not receive its own paragraph number.
 
 ### Some paragraphs should not be numbered
 
-There are a few cases in which paragraphs should not be numbered:
+There are a few cases in which paragraphs should not be numbered.[^4]
+Along with the above-mentioned case of a block quote that should be
+part of a paragraph, there are also the following examples:
 
-1.  As mentioned above, certian cases of block quotes that begin
-    in the context of a paragraph should not receive their own number.
-
-2.  Quotations of poetry within other texts often do not receive
+1.  Quotations of poetry within other texts often do not receive
     separate paragraph numbers.
 
-3.  The opening sentence of sections of religious texts, such as
+2.  The opening sentence of sections of religious texts, such as
     surahs in the Qur'an and many prayers, have an exhortation line
     that is not given its own verse or paragraph number.
 
-4.  Certain paragraphs of letters do not receive their own number,
+3.  Certain paragraphs of letters do not receive their own number,
     including the greeting or salutation, the complimentary close,
     and the signature line. For example:
 
-    Dear reader, {.salutation ¶=none}
+    > Dear reader, {.salutation ¶=none}
+    >
+    > I am very hopeful that you are finding this manifesto at once 
+    > interesting, entertaining, and convincing, and that in the future
+    > you will always make the utmost endeavor to number your paragraphs.
+    >
+    > Also, I'm reconsidering the part about never using paragraphs inside
+    > list items.
+    >
+    > Sincerely, {¶=none}
+    >
+    > [Author McAuthorsson] {.signature ¶=none}
+    >
+    > {¶=¶}
 
-    I am very hopeful that you are finding this manifesto at once 
-    interesting, entertaining, and convincing, and that in the future
-    you will always make the utmost endeavor to number your paragraphs.
+[^4]: This library allows authors to skip paragraph numbering for a single
+    paragraph using the html attributes ¶="none" or ¶="skip".
+    For multiple paragraphs, authors may use the same attribute for control,
+    viz. ¶="stop" or ¶="off" to stop, and ¶="start", ¶="on", or ¶="auto"
+    to continue.
 
-    Also, I'm reconsidering the part about never using paragraphs inside
-    list items.
-
-    Sincerely, {¶=none}
-
-    [Author McAuthorsson] {.signature ¶=none}
+    Attributes are not part of Markdown, but can be added with an extension
+    such as [markdown-it-attrs].
