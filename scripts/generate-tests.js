@@ -5,12 +5,12 @@ const fs = require('fs')
 const path = require('path')
 const md = require('markdown-it')('commonmark', { typographer: true })
   .enable(['linkify', 'smartquotes', 'replacements'])
-  .use(require('../'))
+  .use(require('..'))
   .use(require('markdown-it-attrs'))
   .use(require('markdown-it-footnote'))
 const cm = require('markdown-it')('commonmark', { typographer: true })
   .enable(['linkify', 'smartquotes', 'replacements'])
-  .use(require('../'))
+  .use(require('..'))
 const manifesto = fs.readFileSync(path.resolve(__dirname, '../manifesto.md'), 'utf8').toString()
 
 function htmlize(html) {
@@ -20,9 +20,9 @@ ${html}
 }
 
 fs.writeFileSync(
-  path.resolve(__dirname, 'fixtures/html/manifesto-extended.html'),
+  path.resolve(__dirname, '../test/fixtures/html/manifesto-extended.html'),
   htmlize(md.render(manifesto)))
 
 fs.writeFileSync(
-  path.resolve(__dirname, 'fixtures/html/manifesto-commonmark.html'),
+  path.resolve(__dirname, '../test/fixtures/html/manifesto-commonmark.html'),
   htmlize(cm.render(manifesto)))

@@ -35,7 +35,7 @@ const rendered = {
 })
 function testRender(text1, text2) {
   try {
-    assert.equal(text1, text2)
+    assert.strictEqual(text1, text2)
   }
   catch (err) {
     if (err instanceof assert.AssertionError) {
