@@ -92,8 +92,15 @@ function autoParNum(state, options = {}) {
 
   // OPTIONS
 
-  // numberedElements: A comma-separated string of elements to be numbered.
-  let numberedElements = options.numberedElements || 'paragraph_open'
+  // numberedElements: A comma-separated string of markdown-it token types
+  // which should receive paragraph numbers.
+  let numberedElements = (options.numberedElements || 'paragraph')
+    .replace(/(,|$)+/g, '_open$&').split(',').filter(v => v)
+
+  // skippedElements: A comma-separated list of markdown-it token types
+  // inside which NO ELEMENTS should be numbered
+  let skippedElements = (options.skipElements || 'footnote_block')
+    .replace(/(.+?)(,|$)+/g, '$1_open,$1_close$2').split(',').filter(v => v)
 
   // sign: The sign used for paragraph numbering attributes.
   let sign = options.sign = options.sign || '¶'
@@ -107,9 +114,11 @@ function autoParNum(state, options = {}) {
   let setNum
   let headingCount = { p:0, h1:0, h2:0, h3:0, h4:0, h5:0, h6:0 }
   let scheme = { p:'', h1:'', h2:'', h3:'', h4:'', h5:'', h6:'' }
-  let tag
-  let numbersOn = true
   let schemeLevels
+  let tag
+  let token
+  let numbersOn = true
+  let nesting = 0
 
   // Parse headers and paragraphs to determine numbering scheme
   for (let i = 0; i < state.tokens.length; i++) {
@@ -160,11 +169,12 @@ function autoParNum(state, options = {}) {
 
 
   for (let i = 0; i < state.tokens.length; ++i) {
+    token = state.tokens[i]
     setNum = state.tokens[i].attrGet(sign)
 
     // Tags that may be numbered
     /* eslint no-fallthrough: 0 */
-    if (numberedElements.indexOf(state.tokens[i].type) > -1) {
+    if (nesting === 0 && numberedElements.indexOf(token.type) > -1) {
       switch (setNum) {
         case null:
           if (numbersOn) num.increment()
@@ -195,8 +205,12 @@ function autoParNum(state, options = {}) {
     }
 
     // Tags that may affect numbering
-    else if (state.tokens[i].type === 'heading_open') {
+    else if (nesting === 0 && token.type === 'heading_open') {
       num.increment(state.tokens[i].tag)
+    }
+
+    else if (skippedElements.indexOf(token.type) > -1) {
+      nesting += token.nesting
     }
 
   }
