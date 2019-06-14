@@ -3,16 +3,14 @@
 
 const fs = require('fs')
 const path = require('path')
-const md = {
-  extended: require('markdown-it')('commonmark', { typographer: true })
-    .enable(['linkify', 'smartquotes', 'replacements'])
-    .use(require('../'))
-    .use(require('markdown-it-attrs'))
-    .use(require('markdown-it-footnote')),
-  commonmark: require('markdown-it')('commonmark', { typographer: true })
-    .enable(['linkify', 'smartquotes', 'replacements'])
-    .use(require('../')),
-}
+const md = require('markdown-it')('commonmark', { typographer: true })
+  .enable(['linkify', 'smartquotes', 'replacements'])
+  .use(require('../'))
+  .use(require('markdown-it-attrs'))
+  .use(require('markdown-it-footnote'))
+const cm = require('markdown-it')('commonmark', { typographer: true })
+  .enable(['linkify', 'smartquotes', 'replacements'])
+  .use(require('../'))
 const manifesto = fs.readFileSync(path.resolve(__dirname, '../manifesto.md'), 'utf8').toString()
 
 function htmlize(html) {
@@ -21,9 +19,10 @@ ${html}
 </body></html>`
 }
 
-module.exports = function () {
-  ['commonmark', 'extended'].forEach(suffix => {
-    let filename = path.resolve(__dirname, `fixtures/html/manifesto-${suffix}.html`)
-    if (fs.existsSync(filename)) fs.writeFileSync(filename, htmlize(md[suffix].render(manifesto)))
-  })
-}
+fs.writeFileSync(
+  path.resolve(__dirname, 'fixtures/html/manifesto-extended.html'),
+  htmlize(md.render(manifesto)))
+
+fs.writeFileSync(
+  path.resolve(__dirname, 'fixtures/html/manifesto-commonmark.html'),
+  htmlize(cm.render(manifesto)))

@@ -15,5 +15,12 @@
       ],
       "internalConsoleOptions": "openOnSessionStart"
     },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Generate tests",
+      "program": "${workspaceFolder}/test/generate-tests.js",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
   ]
 }
