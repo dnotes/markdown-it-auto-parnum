@@ -199,9 +199,15 @@ function autoParNum(state, options = {}) {
           else if (numbersOn) num.increment()
           break
       }
-      if (numbersOn) {
-        num.insertAfter(i)
-      }
+      // Don't number if the numbering is off
+      if (!numbersOn) continue
+      // Don't number if the element is completely empty
+      if (state.tokens[i + 2].tag === state.tokens[i].tag &&
+          state.tokens[i + 1].type === 'inline' &&
+          state.tokens[i + 1].children.length === 1 &&
+          state.tokens[i + 1].children[0].type === 'text' &&
+          state.tokens[i + 1].children[0].content.trim() === '') continue
+      num.insertAfter(i)
     }
 
     // Tags that may affect numbering

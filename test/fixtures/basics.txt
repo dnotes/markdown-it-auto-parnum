@@ -1,0 +1,19 @@
+Paragraph numbers work
+.
+Paragraph text.
+.
+<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
+.
+
+Empty paragraphs in containers do not receive numbers
+.
+> **Paragraph text.**
+>
+> {¶=¶}
+.
+<blockquote ¶="¶">
+<p><a ¶="1" id="¶1">1</a><strong>Paragraph text.</strong></p>
+<p></p>
+</blockquote>
+.
+
