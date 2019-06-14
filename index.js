@@ -66,7 +66,7 @@ class Counter {
   }
 
   get value() {
-    return [...this._value].reverse().join('')
+    return [...this._value].reverse().join('').replace(/^[0\.]+/, '')
   }
 
   set headingLevels(x) {

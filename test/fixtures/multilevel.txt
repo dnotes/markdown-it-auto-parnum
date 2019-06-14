@@ -427,8 +427,8 @@ Paragraph text.
 Paragraph text.
 .
 <h1>Header</h1>
-<p><a ¶="0.1" id="¶0.1">0.1</a>Paragraph text.</p>
-<p><a ¶="0.2" id="¶0.2">0.2</a>Paragraph text.</p>
+<p><a ¶="1" id="¶1">1</a>Paragraph text.</p>
+<p><a ¶="2" id="¶2">2</a>Paragraph text.</p>
 <h2 ¶="1">Header</h2>
 <p><a ¶="1.1" id="¶1.1">1.1</a>Paragraph text.</p>
 <p><a ¶="1.2" id="¶1.2">1.2</a>Paragraph text.</p>
