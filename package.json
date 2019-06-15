@@ -1,7 +1,7 @@
 {
-  "name": "markdown-it-base",
+  "name": "markdown-it-auto-parnum",
   "version": "1.0.0",
-  "description": "Base project for development of markdown-it plugins.",
+  "description": "A markdown-it plugin for automatic paragraph numbering.",
   "main": "index.js",
   "scripts": {
     "build": "make build",
@@ -15,7 +15,7 @@
     "markdown-it",
     "markdown"
   ],
-  "author": "",
+  "author": "David Hunt <git@dnotes.net> (https://dnotes.net/)",
   "license": "MIT",
   "devDependencies": {
     "browserify": "^16.2.3",
@@ -29,5 +29,6 @@
     "nyc": "^14.1.1",
     "terser": "^3.17.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "repository": "dnotes/markdown-it-auto-parnum"
 }
