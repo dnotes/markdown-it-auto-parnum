@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "pub": "yarn lint && yarn test && make build && make publish",
     "generate-tests": "./scripts/generate-tests.js",
-    "test": "nyc --check-coverage --lines 100 mocha"
+    "test": "nyc --check-coverage --lines 100 --branches 100 mocha"
   },
   "keywords": [
     "markdown-it",
