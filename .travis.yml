@@ -1,7 +1,14 @@
 language: node_js
 node_js:
- - node
- - lts/*
+- node
+- lts/*
 script: yarn lint && yarn coverage
 sudo: false
-# deploy: run `travis setup npm`
+deploy:
+  provider: npm
+  email: git@dnotes.net
+  api_key:
+    secure: jpz5PKBX5HR9+5pOIpCksJShvFXOqDiPJHyAQKGP2bViNoawgzAxA5q9uJq0HBC8x5djYsBMFjwry0Da8qyVpOnVDuMb0WrRThS3mUA6XnwxBwxMhNVuCSWhYeG6k1/ntN5eN+oTk9jrSfroln4BPzlxpqLSM/kgB5Jp6Thj01k3VqTzhy/c4Z6AoXXNNUSQ8muIT/KXyjgYwgm5gTLXIPCa9Qy3QlpZAUbpupJVn4GRiB6uFz0TFz6+A0YC9stovQEvu8wEr/pT++1czhx9EV2dOEUW41St/TwvzQsNjE/x6E4fHrMbU+QJMQw9mzGFn7uX6fYLNItwt5SYQN0d/DVaTR99kux1aV4aLYwht+xdNQBosxVFvowR603Q1sJu7fFsCCJpE1Arh9bBQS4Qzc9qEDQoeMKiv+BFwjeYLsCVHGkooFNfF1+jeYINOedm1YiVnVjo/GCFyCBED4puFaSYX5nLoyvVgeqRn4RqQZH1XIItU3zvONAnywAhJSQoQ7naiglH/x1VTU8w8pGpvsiSrauYF1mfBTFgePzEhKEj1CcLTYaG0Pdj2RhXNByo2GoftoH+JZCqPdkVoHdOMyWNcoccws7RRR9wtwdRp3zQFXp+k7UQo5LfRyKLxhrv4Mx53LnNmgnRqiMdcc/uJvEoKFj33Uc0hUlkjBA060o=
+  on:
+    tags: true
+    repo: dnotes/markdown-it-auto-parnum
