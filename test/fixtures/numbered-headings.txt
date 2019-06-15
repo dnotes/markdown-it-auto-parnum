@@ -1,0 +1,179 @@
+Headers with no explicit numbering
+.
+# Header
+
+Paragraph text.
+
+Paragraph text.
+
+## Subheader
+
+Paragraph text.
+
+Paragraph text.
+
+## Subheader
+
+Paragraph text.
+
+Paragraph text.
+
+# Header
+
+## Subheader
+
+Paragraph text.
+
+Paragraph text.
+
+## Subheader
+
+Paragraph text.
+
+Paragraph text.
+.
+.
+
+Headers with explicit paragraph numbering
+.
+# Header {¶=1}
+
+Paragraph text.
+
+Paragraph text.
+
+## Subheader {¶=1:1}
+
+Paragraph text.
+
+Paragraph text.
+
+## Subheader {¶=1:2}
+
+Paragraph text.
+
+Paragraph text.
+
+# Header {¶=2}
+
+## Subheader {¶=2:1}
+
+Paragraph text.
+
+Paragraph text.
+
+## Subheader {¶=2:2}
+
+Paragraph text.
+
+Paragraph text.
+.
+.
+
+Headers with numbers at the beginning
+.
+# 1: Header
+
+Paragraph text.
+
+Paragraph text.
+
+## 1.1: Subheader
+
+Paragraph text.
+
+Paragraph text.
+
+## 1.2: Subheader
+
+Paragraph text.
+
+Paragraph text.
+
+# 2: Header
+
+## 2.1: Subheader
+
+Paragraph text.
+
+Paragraph text.
+
+## 2.2: Subheader
+
+Paragraph text.
+
+Paragraph text.
+.
+.
+
+Headers with numbers at the end
+.
+# Header 1
+
+Paragraph text.
+
+Paragraph text.
+
+## Subheader 1.1
+
+Paragraph text.
+
+Paragraph text.
+
+## Subheader 1.2
+
+Paragraph text.
+
+Paragraph text.
+
+# Header 2
+
+## Subheader 2.1
+
+Paragraph text.
+
+Paragraph text.
+
+## Subheader 2.2
+
+Paragraph text.
+
+Paragraph text.
+.
+.
+
+Headers with mixed number locations
+.
+# Header 1
+
+Paragraph text.
+
+Paragraph text.
+
+## 1:1 Subheader
+
+Paragraph text.
+
+Paragraph text.
+
+## 1:2 Subheader
+
+Paragraph text.
+
+Paragraph text.
+
+# Header 2
+
+## 2:1 Subheader
+
+Paragraph text.
+
+Paragraph text.
+
+## 2:2 Subheader
+
+Paragraph text.
+
+Paragraph text.
+.
+.
