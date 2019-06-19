@@ -36,23 +36,38 @@ Paragraph text.
 <p><a ¶="3" id="¶3" href="#¶3">3</a>Paragraph text.</p>
 .
 
-Control: "auto"
+Control: "manual" and "auto"
 .
 Paragraph text.
 
-Paragraph text. {¶=stop}
+Paragraph text. {¶=manual}
 
 Paragraph text.
+
+Paragraph text. {¶=3}
+
+Paragraph text.
+
+Paragraph text. {¶=6}
+
+Paragraph text.
+
+Paragraph text. {¶=9}
 
 Paragraph text. {¶=auto}
 
 Paragraph text.
 .
 <p><a ¶="1" id="¶1" href="#¶1">1</a>Paragraph text.</p>
-<p ¶="stop">Paragraph text.</p>
+<p ¶="manual">Paragraph text.</p>
 <p>Paragraph text.</p>
-<p ¶="auto"><a ¶="2" id="¶2" href="#¶2">2</a>Paragraph text.</p>
-<p><a ¶="3" id="¶3" href="#¶3">3</a>Paragraph text.</p>
+<p ¶="3"><a ¶="3" id="¶3" href="#¶3">3</a>Paragraph text.</p>
+<p>Paragraph text.</p>
+<p ¶="6"><a ¶="6" id="¶6" href="#¶6">6</a>Paragraph text.</p>
+<p>Paragraph text.</p>
+<p ¶="9"><a ¶="9" id="¶9" href="#¶9">9</a>Paragraph text.</p>
+<p ¶="auto"><a ¶="10" id="¶10" href="#¶10">10</a>Paragraph text.</p>
+<p><a ¶="11" id="¶11" href="#¶11">11</a>Paragraph text.</p>
 .
 
 Control: "none" and "skip"

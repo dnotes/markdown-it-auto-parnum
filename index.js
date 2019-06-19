@@ -140,6 +140,7 @@ module.exports = function plugin(md, options = {}) {
     let token
     let numbersOn = true
     let nesting = 0
+    let manual = false
 
     // Parse headers and paragraphs to determine numbering scheme
     for (let i = 0; i < state.tokens.length; i++) {
@@ -197,6 +198,8 @@ module.exports = function plugin(md, options = {}) {
       switch (setNum) {
         case null:
           break
+        case 'manual':
+          manual = true
         case 'stop':
         case 'off':
           numbersOn = false
@@ -204,6 +207,7 @@ module.exports = function plugin(md, options = {}) {
         case 'skip':
           continue
         case 'auto':
+          manual = false
         case 'on':
         case 'start':
           numbersOn = true
@@ -223,6 +227,8 @@ module.exports = function plugin(md, options = {}) {
       if (nesting === 0 && numberedElements.indexOf(token.type) > -1) {
         // Don't number if the numbering is off
         if (!numbersOn) continue
+        // Don't number if the numbering is on manual
+        if (manual) continue
         // Don't number if the element is completely empty
         if (state.tokens[i + 2].tag === state.tokens[i].tag &&
             state.tokens[i + 1].type === 'inline' &&
