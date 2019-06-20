@@ -11,18 +11,25 @@ class Counter {
   }
 
   /**
-   * Inserts a paragraph number token after token[i]
-   * @param {number} i the index of the token which should be followed by a paragraph number
+   * Inserts a paragraph number token inside the tag for token[i],
+   * or just before the tag if the token is not nesting.
+   * @param {number} i the index of the token which should be numbered
    */
-  insertAfter(i, heading = false) {
+  insertAt(i, heading = false) {
     let sign = heading ? this.options.headingSign : this.options.sign
     let token = new this.state.Token('paragraph_number', 'a', 0)
     token.content = this.value
     token.attrPush([this.options.sign, this.value])
     token.attrPush(['id', sign + this.value])
     if (this.options.addLinks) token.attrPush(['href', `#${sign}${this.value}`])
-    this.state.tokens.splice(i + 1, 0, token)
-    this.state.tokens[i].block = false
+    if (this.state.tokens[i].nesting === 1) {
+      this.state.tokens.splice(i + 1, 0, token)
+      this.state.tokens[i].block = false
+    }
+    else {
+      // For non-nesting tags (e.g. fence) the paragraph number must go before the tag
+      this.state.tokens.splice(i, 0, token)
+    }
   }
 
   /**
@@ -104,11 +111,11 @@ module.exports = function plugin(md, options = {}) {
     // numberedElements: A comma-separated string of markdown-it token types
     // which should receive paragraph numbers.
     let numberedElements = (options.numberedElements || 'paragraph')
-      .replace(/(,|$)+/g, '_open$&').split(',').filter(v => v)
+      .replace(/(.+?)(,|$)+/g, '$1,$1_open$2').split(',').filter(v => v)
 
     // skippedElements: A comma-separated list of markdown-it token types
     // inside which NO ELEMENTS should be numbered
-    let skippedElements = (options.skipElements || 'footnote_block')
+    let skippedElements = (options.skippedElements || 'footnote_block')
       .replace(/(.+?)(,|$)+/g, '$1_open,$1_close$2').split(',').filter(v => v)
 
     // sign: The sign used for paragraph numbering attributes.
@@ -141,6 +148,7 @@ module.exports = function plugin(md, options = {}) {
     let token
     let numbersOn = true
     let nesting = 0
+    let manual = false
 
     // Parse headers and paragraphs to determine numbering scheme
     for (let i = 0; i < state.tokens.length; i++) {
@@ -191,13 +199,16 @@ module.exports = function plugin(md, options = {}) {
     num.headingLevels = num.elements.filter(v => v).length - 1
 
     for (let i = 0; i < state.tokens.length; ++i) {
-      if (state.tokens[i].type === 'paragraph_number') continue
+      if (state.tokens[i].type === 'paragraph_number' ||
+          (i > 0 && state.tokens[i - 1].type === 'paragraph_number')) continue
       token = state.tokens[i]
       setNum = state.tokens[i].attrGet(sign)
 
       switch (setNum) {
         case null:
           break
+        case 'manual':
+          manual = true
         case 'stop':
         case 'off':
           numbersOn = false
@@ -205,6 +216,7 @@ module.exports = function plugin(md, options = {}) {
         case 'skip':
           continue
         case 'auto':
+          manual = false
         case 'on':
         case 'start':
           numbersOn = true
@@ -214,7 +226,7 @@ module.exports = function plugin(md, options = {}) {
             num.value = setNum
             numbersOn = true
             // If the number has been specified, it must be added immediately to avoid incrementing
-            num.insertAfter(i, /^h\d$/.test(token.tag))
+            num.insertAt(i, /^h\d$/.test(token.tag))
             continue
           }
       }
@@ -224,6 +236,8 @@ module.exports = function plugin(md, options = {}) {
       if (nesting === 0 && numberedElements.indexOf(token.type) > -1) {
         // Don't number if the numbering is off
         if (!numbersOn) continue
+        // Don't number if the numbering is on manual
+        if (manual) continue
         // Don't number if the element is completely empty
         if (state.tokens[i + 2].tag === state.tokens[i].tag &&
             state.tokens[i + 1].type === 'inline' &&
@@ -243,16 +257,16 @@ module.exports = function plugin(md, options = {}) {
         ) continue
 
         num.increment()
-        num.insertAfter(i)
+        num.insertAt(i)
       }
 
       // Tags that may affect numbering
       else if (nesting === 0 && numbersOn && token.type === 'heading_open') {
         num.increment(state.tokens[i].tag)
-        if (numberHeadings && num.elements.indexOf(token.tag) > 0) num.insertAfter(i, true)
+        if (numberHeadings && num.elements.indexOf(token.tag) > 0) num.insertAt(i, true)
       }
 
-      else if (skippedElements.indexOf(token.type) > -1) {
+      if (skippedElements.indexOf(token.type) > -1) {
         nesting += token.nesting
       }
 
