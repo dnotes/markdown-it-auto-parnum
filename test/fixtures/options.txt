@@ -56,3 +56,26 @@ Paragraph text.
 <h3>Header</h3>
 <p><a §="2:2:3" id="§2:2:3">2:2:3</a>Paragraph text.</p>
 .
+
+Options { numberedElements: 'paragraph,fence,strong,blockquote', skippedElements: 'blockquote' }
+.
+Paragraph text.
+
+```
+var code = 1;
+```
+
+Paragraph text **bold**.
+
+> Blockquote text.
+>
+> Blockquote text.
+.
+<p><a §="1" id="§1">1</a>Paragraph text.</p>
+<a §="2" id="§2">2</a><pre><code>var code = 1;
+</code></pre>
+<p><a §="3" id="§3">3</a>Paragraph text <strong>bold</strong>.</p>
+<blockquote><a §="4" id="§4">4</a><p>Blockquote text.</p>
+<p>Blockquote text.</p>
+</blockquote>
+.

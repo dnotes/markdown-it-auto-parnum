@@ -19,6 +19,8 @@ const opt = require('markdown-it')('commonmark', { typographer: true })
     numberHeadings: false,
     headingLevels: 2,
     addLinks: false,
+    numberedElements: 'paragraph,fence,strong,blockquote',
+    skippedElements: 'blockquote',
   })
   .use(require('markdown-it-attrs'))
   .use(require('markdown-it-footnote'))
