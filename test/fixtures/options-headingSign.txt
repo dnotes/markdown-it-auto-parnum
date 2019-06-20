@@ -1,0 +1,9 @@
+Options: { headingSign: 'sec' }
+.
+# Heading {¶=1}
+
+Paragraph text.
+.
+<h1 ¶="1"><a ¶="1" id="sec1" href="#sec1">1</a>Heading</h1>
+<p><a ¶="1.1" id="¶1.1" href="#¶1.1">1.1</a>Paragraph text.</p>
+.

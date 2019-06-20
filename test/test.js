@@ -18,12 +18,18 @@ const opt = require('markdown-it')('commonmark', { typographer: true })
     delimiter: ':',
     numberHeadings: false,
     headingLevels: 2,
+    headingSign: 'sec',
     addLinks: false,
     numberedElements: 'paragraph,fence,strong,blockquote',
     skippedElements: 'blockquote',
   })
   .use(require('markdown-it-attrs'))
   .use(require('markdown-it-footnote'))
+const opt2 = require('markdown-it')('commonmark', { typographer: true })
+  .use(require('markdown-it-attrs'))
+  .use(plugin, {
+    numberHeadings: false,
+  })
 describe('Run test fixtures', function () {
   generate(path.join(__dirname, 'fixtures/multilevel.txt'), { header: true }, md)
   generate(path.join(__dirname, 'fixtures/control.txt'), { header: true }, md)
@@ -31,6 +37,8 @@ describe('Run test fixtures', function () {
   generate(path.join(__dirname, 'fixtures/footnotes.txt'), { header: true }, md)
   generate(path.join(__dirname, 'fixtures/edge-cases.txt'), { header: true }, md)
   generate(path.join(__dirname, 'fixtures/options.txt'), { header: true }, opt)
+  generate(path.join(__dirname, 'fixtures/options-headingSign.txt'), { header: true }, opt2)
+  opt2.use(plugin, { headingSign: 'sec' }) // Options overridden in async functions are applied before rendering.
 })
 
 // TESTING A LARGE FILE
