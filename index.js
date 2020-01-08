@@ -22,8 +22,13 @@ class Counter {
     token.attrPush(['id', sign + this.value])
     if (this.options.addLinks) token.attrPush(['href', `#${sign}${this.value}`])
     if (this.state.tokens[i].nesting === 1) {
-      this.state.tokens.splice(i + 1, 0, token)
-      this.state.tokens[i].block = false
+      if (this.state.tokens[i + 1].type === 'inline') {
+        this.state.tokens[i + 1].children.unshift(token)
+      }
+      else {
+        this.state.tokens.splice(i + 1, 0, token)
+        this.state.tokens[i].block = false
+      }
     }
     else {
       // For non-nesting tags (e.g. fence) the paragraph number must go before the tag
