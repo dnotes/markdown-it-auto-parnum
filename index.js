@@ -114,7 +114,7 @@ module.exports = function plugin(md, options = {}) {
 
     // numberedElements: A comma-separated string of markdown-it token types
     // which should receive paragraph numbers.
-    let numberedElements = (options.numberedElements || 'paragraph')
+    let numberedElements = (options.numberedElements || 'p')
       .replace(/(.+?)(,|$)+/g, '$1,$1_open$2').split(',').filter(v => v)
 
     // skippedElements: A comma-separated list of markdown-it token types
@@ -157,7 +157,9 @@ module.exports = function plugin(md, options = {}) {
     // Parse headers and paragraphs to determine numbering scheme
     for (let i = 0; i < state.tokens.length; i++) {
       // We should check all tokens of types that can be numbered, as well as all headers
-      if ((numberedElements + ',heading_open').indexOf(state.tokens[i].type) > -1) {
+      if (state.tokens[i].type === 'heading_open' ||
+          (numberedElements.indexOf(state.tokens[i].tag) > -1 && /_open$/.test(state.tokens[i].type)) ||
+          numberedElements.indexOf(state.tokens[i].type) > -1) {
         tag = /^h\d$/.test(state.tokens[i].tag) ? state.tokens[i].tag : 'p'
         if ((setNum = state.tokens[i].attrGet(sign)) && /\d/.test(setNum)) {
           setNum = setNum.replace(/[0-9]+/g, '0')
@@ -237,7 +239,9 @@ module.exports = function plugin(md, options = {}) {
 
       // Tags that may be numbered
       /* eslint no-fallthrough: 0 */
-      if (nesting === 0 && numberedElements.indexOf(token.type) > -1) {
+      if (nesting === 0 && (
+        (numberedElements.indexOf(token.tag) > -1  && /_open$/.test(state.tokens[i].type)) ||
+        numberedElements.indexOf(token.type) > -1)) {
         // Don't number if the numbering is off
         if (!numbersOn) continue
         // Don't number if the numbering is on manual

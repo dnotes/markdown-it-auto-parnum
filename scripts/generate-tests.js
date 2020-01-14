@@ -11,6 +11,7 @@ const md = require('markdown-it')('commonmark', { typographer: true })
 const cm = require('markdown-it')('commonmark', { typographer: true })
   .enable(['linkify', 'smartquotes', 'replacements'])
   .use(require('..'))
+const ocean = require('ocean-markdown-it').use(require('..'))
 const manifesto = fs.readFileSync(path.resolve(__dirname, '../manifesto.md'), 'utf8').toString()
 
 function htmlize(html) {
@@ -26,3 +27,7 @@ fs.writeFileSync(
 fs.writeFileSync(
   path.resolve(__dirname, '../test/fixtures/html/manifesto-commonmark.html'),
   htmlize(cm.render(manifesto)))
+
+fs.writeFileSync(
+  path.resolve(__dirname, '../test/fixtures/html/manifesto-ocean.html'),
+  htmlize(ocean.render(manifesto)))

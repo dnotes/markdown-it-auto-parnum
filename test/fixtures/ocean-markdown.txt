@@ -1,0 +1,30 @@
+Loose Lists
+.
+- This is a list item
+
+- This is a list item
+
+1. This is a list item
+
+2. This is a list item
+.
+<p class="li indent-1"><a ¶="1" id="¶1" href="#¶1">1</a>- This is a list item</p>
+<p class="li indent-1"><a ¶="2" id="¶2" href="#¶2">2</a>- This is a list item</p>
+<p class="li indent-1"><a ¶="3" id="¶3" href="#¶3">3</a>1. This is a list item</p>
+<p class="li indent-1"><a ¶="4" id="¶4" href="#¶4">4</a>2. This is a list item</p>
+.
+
+Tight Lists
+.
+- This is a list item
+- This is a list item
+1. This is a list item
+2. This is a list item
+.
+<p class="indent-1"><a ¶="1" id="¶1" href="#¶1">1</a><span class="li">- This is a list item</span>
+<span class="li">- This is a list item</span>
+</p>
+<p class="indent-1"><a ¶="2" id="¶2" href="#¶2">2</a><span class="li">1. This is a list item</span>
+<span class="li">2. This is a list item</span>
+</p>
+.

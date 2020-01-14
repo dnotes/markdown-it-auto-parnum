@@ -19,3 +19,7 @@ body {
   padding-left: 2.5em;
   position: relative;
 }
+
+span.li {
+  display: block;
+}

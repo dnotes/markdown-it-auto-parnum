@@ -62,10 +62,12 @@ All of the reference schemes listed above fulfil these two functions,
 and they benefit individual and collective understanding to the extent
 that they effectively balance competing concerns:
 
+  <!-- {¶=none} hides list paragraph number for Ocean-flavored markdown -->
 - being specific
 - being concise
 - being portable
 - being meaningful
+{¶=none}
 
 The following sections detail each of the reference schemes mentioned above,
 giving a few examples of each, exploring cases in which each may have utility,
@@ -87,6 +89,7 @@ the rigorous standards of proper science.
 
 ### Complete work
 
+ <!-- {¶=auto} numbers list for Commonmark extended -->
 - All citations in most news stories, e.g. "A recent study..." {¶=auto}
 - All citations in most social media posts
 - Most hyperlinks

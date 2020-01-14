@@ -26,8 +26,8 @@ This library has several options, most of which should not be needed under norma
 - addLinks (true): Whether the anchors for paragraphs should be rendered as links.
 - headingLevels (1): The maximum number of headings to include in multi-level paragraph numbers, unless explicitly specified in a document.
 - headingSign (''): A symbol or text that should be placed in the html id attribute given to numbered headings. For example, if this is set to "sec", the headers will be rendered with `id="sec1"`.
-- numberedElements ('paragraph'): A comma-separated list of markdown-it token types which should receive paragraph numbers. Only **block-level elements** can receive paragraph numbers. To give each fenced code block a paragraph number, one could set this to `'paragraph,fence'`.
-- skippedElements ('footnote_block'): A comma-separted list of markdown-it token types inside which any paragraphs should not be numbered. Only **block-level elements with nesting** can be skipped. To number blockquotes but not the paragraphs inside them, one could set the options `{ numberedElements: 'paragraph,blockquote', skippedElements: 'blockquote' }`.
+- numberedElements ('p'): A comma-separated list of HTML elements or markdown-it token types which should receive paragraph numbers. Only **block-level elements** can receive paragraph numbers. To give each fenced code block a paragraph number, one could set this to `'p,fence'`, where `p` is the HTML tag and `fence` is the markdown-it token type.
+- skippedElements ('footnote_block'): A comma-separted list of markdown-it token types **only** inside which any paragraphs should not be numbered. Only **block-level elements with nesting** can be skipped. To number blockquotes but not the paragraphs inside them, one could set the options `{ numberedElements: 'paragraph,blockquote', skippedElements: 'blockquote' }`.
 
 ### Multi-level numbering
 

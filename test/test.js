@@ -30,6 +30,7 @@ const opt2 = require('markdown-it')('commonmark', { typographer: true })
   .use(plugin, {
     numberHeadings: false,
   })
+const oceanMd = require('ocean-markdown-it').use(plugin)
 describe('Run test fixtures', function () {
   generate(path.join(__dirname, 'fixtures/multilevel.txt'), { header: true }, md)
   generate(path.join(__dirname, 'fixtures/control.txt'), { header: true }, md)
@@ -39,6 +40,7 @@ describe('Run test fixtures', function () {
   generate(path.join(__dirname, 'fixtures/options.txt'), { header: true }, opt)
   generate(path.join(__dirname, 'fixtures/options-headingSign.txt'), { header: true }, opt2)
   opt2.use(plugin, { headingSign: 'sec' }) // Options overridden in async functions are applied before rendering.
+  generate(path.join(__dirname, 'fixtures/ocean-markdown.txt'), { header: true }, oceanMd)
 })
 
 // TESTING A LARGE FILE
@@ -51,8 +53,9 @@ const manifesto = fs.readFileSync(path.resolve(__dirname, '../manifesto.md'), 'u
 const rendered = {
   commonmark: '',
   extended: '',
+  ocean: '',
 }
-;['commonmark', 'extended'].forEach((x) => {
+;['commonmark', 'extended', 'ocean'].forEach((x) => {
   rendered[x] = fs.readFileSync(path.resolve(__dirname, `fixtures/html/manifesto-${x}.html`), 'utf8')
     .toString()
     .replace(/(.+<body>\n|\n<\/body>.+)/gm, '')
@@ -77,5 +80,7 @@ describe('Compare rendering of Manifesto to expectations', function () {
   it('Extended: Commonmark with footnotes and attrs', function () {
     testRender(md.render(manifesto), rendered.extended)
   })
+  it('Ocean: Ocean-flavored Markdown', function () {
+    testRender(oceanMd.render(manifesto), rendered.ocean)
+  })
 })
-

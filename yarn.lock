@@ -587,6 +587,11 @@ commondir@^1.0.1:
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
   integrity sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=
 
+commonmark-spec@^0.29.0:
+  version "0.29.0"
+  resolved "https://registry.yarnpkg.com/commonmark-spec/-/commonmark-spec-0.29.0.tgz#5fbfe052f060a0020fbf1ecc917e51cbc0f1fb67"
+  integrity sha512-jmvWU8f4BFfg10eOBrhZwTqRlfSYTkhGAuaFDlfPOCF6d/bgSSV3xPlpw4e7AzCwj7sUDzDsLS7ceLsmIpFV8w==
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -890,6 +895,11 @@ entities@~1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.2.tgz#bdfa735299664dfafd34529ed4f8522a275fea56"
   integrity sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
+
+entities@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-2.0.0.tgz#68d6084cab1b079767540d80e56a39b423e4abf4"
+  integrity sha512-D9f7V0JSRwIxlRI2mjMqufDrRDnx8p+eEOz7aUM9SuvF8gsBzra0/6tbjl1m8eQHrZlYj6PxqE00hZ1SAIKPLw==
 
 error-ex@^1.3.1:
   version "1.3.2"
@@ -1774,10 +1784,45 @@ markdown-it-attrs@^2.4.1:
   resolved "https://registry.yarnpkg.com/markdown-it-attrs/-/markdown-it-attrs-2.4.1.tgz#4868d067b0615568afc027bb99dfa2badb7ca1bc"
   integrity sha512-BASnIYS+JLpjlhDf7jLV8VOuccxjfDDnQcz5dLfgPsYw8OsgbASexADdIkF7tIdGn+jaQSA4qOZXM3v3W3JBCg==
 
+markdown-it-attrs@^3:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/markdown-it-attrs/-/markdown-it-attrs-3.0.1.tgz#5ce7b4405f2286190fbcf4c482aa9e3e2d55ece5"
+  integrity sha512-fcpdmxdEsctDVJEunPyrirVtU/6zcTMxPxAu4Ofz51PKAa8vRMpmGQXsmXx1HTdIdUPoDonm/RhS/+jTNywj/Q==
+
+markdown-it-flat-lists@^2:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-flat-lists/-/markdown-it-flat-lists-2.0.0.tgz#2f93535970d7411b0b2f840d7f43a3cd648f9883"
+  integrity sha512-GvVvmh98dP06ws/H30lRzyjA/3DSWXLjzTAJh7IfbjWcMQAGkv3m+3r/CQJMsX64TIUwbFJWBNkvfVHHYvI6AQ==
+
+markdown-it-footnote@^3:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/markdown-it-footnote/-/markdown-it-footnote-3.0.2.tgz#1575ee7a093648d4e096aa33386b058d92ac8bc1"
+  integrity sha512-JVW6fCmZWjvMdDQSbOT3nnOQtd9iAXmw7hTSh26+v42BnvXeVyGMDBm5b/EZocMed2MbCAHiTX632vY0FyGB8A==
+
 markdown-it-footnote@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/markdown-it-footnote/-/markdown-it-footnote-3.0.1.tgz#7f3730747cacc86e2fe0bf8a17a710f34791517a"
   integrity sha1-fzcwdHysyG4v4L+KF6cQ80eRUXo=
+
+markdown-it-indented-quotes@^3:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-indented-quotes/-/markdown-it-indented-quotes-3.0.0.tgz#b38eb51f7b4ac01ffb66caecf4fc89904c629331"
+  integrity sha512-P94aVh1RZ2phXI54hrg47OVhlJWltjrueeIItSgxXrcYEm42/iZY+ndTtZHGfB2446eGg6VtSuQa86UOizoPkQ==
+
+markdown-it-macron-underline@^1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/markdown-it-macron-underline/-/markdown-it-macron-underline-1.0.1.tgz#8c44b22bd274b476fbf18ab05eed3f59bbccbcce"
+  integrity sha512-p89j97REeucdejyu5E5LEHbwhvA5GVbnlNTXqhRGN7/DJSyIbtwQTb7X8ic1i7m9rXwF2eoTd7uDA2zFc9Notw==
+
+markdown-it-pagenumbers@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-pagenumbers/-/markdown-it-pagenumbers-1.0.0.tgz#ef3c304607a7292fc0f57fbfc19d247dfd70e26a"
+  integrity sha512-47MDL+MVvEGbUOG3GfVPDpqEfxJlb6guwES9kou7WBpHIk5SpG3xwlLvRKR43R8aVJ0rvhG7NIB9pgLTL4Bf2w==
+
+markdown-it-replacements@^1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/markdown-it-replacements/-/markdown-it-replacements-1.0.1.tgz#0599ea382324e26a93a70164376ccd6ddf19e9ce"
+  integrity sha1-BZnqOCMk4mqTpwFkN2zNbd8Z6c4=
 
 markdown-it-testgen@^0.1.5:
   version "0.1.5"
@@ -1787,6 +1832,22 @@ markdown-it-testgen@^0.1.5:
     chai "~ 1.10.0"
     js-yaml "~ 3.2.4"
     object-assign "^4.1.1"
+
+markdown-it-underline@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/markdown-it-underline/-/markdown-it-underline-1.0.1.tgz#43a54a541d95d739b43157701f1da306d7c300b2"
+  integrity sha1-Q6VKVB2V1zm0MVdwHx2jBtfDALI=
+
+markdown-it@^10:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-10.0.0.tgz#abfc64f141b1722d663402044e43927f1f50a8dc"
+  integrity sha512-YWOP1j7UbDNz+TumYP1kpwnP0aEa711cJjrAQrzd0UXlbJfc5aAq0F/PZHjiioqDC1NKgvIMX+o+9Bk7yuM2dg==
+  dependencies:
+    argparse "^1.0.7"
+    entities "~2.0.0"
+    linkify-it "^2.0.0"
+    mdurl "^1.0.1"
+    uc.micro "^1.0.5"
 
 markdown-it@^8.4.2:
   version "8.4.2"
@@ -2071,6 +2132,22 @@ object.getownpropertydescriptors@^2.0.3:
   dependencies:
     define-properties "^1.1.2"
     es-abstract "^1.5.1"
+
+ocean-markdown-it@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ocean-markdown-it/-/ocean-markdown-it-2.0.0.tgz#76c091bf075925cd55abb32bd80f7eeb85665315"
+  integrity sha512-E8wCr5dAdyejCBeRjgyRHTP5rm0XT70yor4kzbJLpcpx/87oxMassgy5LSkBvwnba03XJN97a/BQqtJSC0vMhg==
+  dependencies:
+    commonmark-spec "^0.29.0"
+    markdown-it "^10"
+    markdown-it-attrs "^3"
+    markdown-it-flat-lists "^2"
+    markdown-it-footnote "^3"
+    markdown-it-indented-quotes "^3"
+    markdown-it-macron-underline "^1"
+    markdown-it-pagenumbers "^1.0.0"
+    markdown-it-replacements "^1"
+    markdown-it-underline "^1.0.1"
 
 once@^1.3.0, once@^1.3.1, once@^1.4.0:
   version "1.4.0"
