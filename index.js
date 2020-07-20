@@ -142,6 +142,8 @@ module.exports = function plugin(md, options = {}) {
     // addLinks: Whether to add href to paragraph number anchors
     options.addLinks = typeof options.addLinks !== 'undefined' ? Boolean(options.addLinks) : true
 
+    let showUnNestedParnum = options.showUnNestedParnum ? false : true
+
     // Variables for parsing
     let num = new Counter(state, options)
     let setNum
@@ -191,7 +193,7 @@ module.exports = function plugin(md, options = {}) {
     }
     if (num.elements.length <= num.headingLevels) {
       ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].some((tag) => {
-        if (headingCount[tag] > 1 && (
+        if ((headingCount[tag] > (showUnNestedParnum ? 0 : 1)) && (
           num.elements.length === 1 || (
             num.elements.indexOf(tag) === -1 &&
             num.elements[num.elements.length - 1] < tag
