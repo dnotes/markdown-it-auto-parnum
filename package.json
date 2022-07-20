@@ -28,7 +28,7 @@
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
     "ocean-markdown-it": "^2.0.0",
-    "terser": "^3.17.0"
+    "terser": "^4.8.1"
   },
   "dependencies": {},
   "repository": "dnotes/markdown-it-auto-parnum"
